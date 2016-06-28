@@ -28,7 +28,7 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+node_modules/*
 jspm_packages
 
 # Optional npm cache directory
@@ -38,3 +38,21 @@ jspm_packages
 .node_repl_history
 # ===== End Node.gitignore =====
 
+!node_modules/jquery/*
+node_modules/jquery/*
+!node_modules/jquery/dist
+node_modules/jquery/dist/*
+!node_modules/jquery/dist/jquery.js
+node_modules/underscore/*
+!node_modules/underscore/underscore.js
+node_modules/backbone/*
+!node_modules/backbone/backbone.js
+node_modules/backbone.localstorage/*
+!node_modules/backbone.localstorage/backbone.localStorage.js
+node_modules/font-awesome/*
+!node_modules/font-awesome/fonts
+node_modules/font-awesome/fonts/*
+!node_modules/font-awesome/fonts/fontawesome-webfont.woff2
+!node_modules/font-awesome/css
+node_modules/font-awesome/css/*
+!node_modules/font-awesome/css/font-awesome.min.css
