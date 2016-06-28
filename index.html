@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>ToDo - Timetracker</title>
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 	</head>
 	<body>
 		<section class="todoapp">
@@ -28,8 +29,9 @@
 		</footer>
 		<script type="text/template" id="item-template">
 			<div class="view">
+				<button class="modify fa fa-pencil-square-o"></button>
 				<label><%- title %></label>
-				<button class="destroy"></button>
+				<button class="destroy fa fa-trash"></button>
 			</div>
 			<input class="edit" value="<%- title %>">
 		</script>
@@ -37,7 +39,7 @@
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 				<label><%- title %></label>
-				<button class="destroy"></button>
+				<button class="destroy fa fa-trash"></button>
 			</div>
 			<input class="edit" value="<%- title %>">
 		</script>

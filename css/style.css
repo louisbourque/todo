@@ -37,6 +37,10 @@ button.destroy{
 	cursor: pointer;
 }
 
+button.modify{
+	cursor: pointer;
+}
+
 .hidden {
 	display: none;
 }
@@ -83,7 +87,7 @@ button.destroy{
 .edit {
 	position: relative;
 	margin: 0;
-	width: 100%;
+	width: 226px;
 	font-size: 120%;
 	font-family: inherit;
 	font-weight: inherit;
@@ -182,7 +186,7 @@ label[for='toggle-all'] {
 	white-space: pre-line;
 	word-break: break-all;
 	padding: 10px 10px 5px 5px;
-	margin-left: 10px;
+	margin-left: 29px;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
@@ -199,24 +203,35 @@ label[for='toggle-all'] {
 	top: 5px;
 	right: 10px;
 	bottom: 0;
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	margin: auto 0;
-	font-size: 30px;
+	font-size: 20px;
 	color: #cc9a9a;
 	margin-bottom: 0;
 	transition: color 0.2s ease-out;
 }
 
-.item-list li .destroy:hover {
-	color: #af5b5e;
-}
-
-.item-list li .destroy:after {
-	content: '×';
-}
-
 .item-list li:hover .destroy {
+	display: block;
+}
+
+
+.item-list li .modify {
+	display: none;
+	position: absolute;
+	top: 7px;
+	left: 5px;
+	width: 25px;
+	height:25px;
+	margin: auto 0;
+	font-size: 25px;
+	color: #5BAF5F;
+	margin-bottom: 0;
+	transition: color 0.2s ease-out;
+}
+
+.item-list li.selected:hover .modify {
 	display: block;
 }
 

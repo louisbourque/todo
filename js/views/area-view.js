@@ -11,7 +11,7 @@ var app = app || {};
 
 		events: {
 			'click label': 'select',
-			'dblclick label': 'edit',
+			'click .modify': 'edit',
 			'click .destroy': 'clear',
 			'keydown .edit': 'handleKeyPress',
 			'blur .edit': 'close'
