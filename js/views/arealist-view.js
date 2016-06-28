@@ -26,7 +26,7 @@ var app = app || {};
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
 			app.areas.fetch({reset: true});
-			this.selectArea();
+			if(app.AreaFilter){this.selectArea();}
 		},
 
 		render: function () {

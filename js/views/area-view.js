@@ -47,9 +47,9 @@ var app = app || {};
 		select: function() {
 			app.areas.each(this.clearSelection, this);
 			app.selectedAreaID = this.model.id;
-			$('.selected').removeClass('selected');
+			$('.areas .selected').removeClass('selected');
 			this.model.set({selected: true});
-			app.AreaRouter.navigate(this.model.get('title'), {trigger: true});
+			this.updateNavigation(this);
 		},
 
 		clearSelection: function(area){
@@ -76,6 +76,7 @@ var app = app || {};
 			}
 
 			this.$el.removeClass('editing');
+			this.updateNavigation(this);
 		},
 
 
@@ -90,6 +91,14 @@ var app = app || {};
 
 		clear: function () {
 			this.model.destroy();
+		},
+
+		updateNavigation: function(area){
+			if(app.ProjectFilter){
+				app.AreaRouter.navigate(area.model.get('title')+'/'+app.ProjectFilter, {trigger: true});
+			}else{
+				app.AreaRouter.navigate(area.model.get('title'), {trigger: true});
+			}
 		}
 	});
 })(jQuery);

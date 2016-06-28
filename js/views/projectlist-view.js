@@ -21,9 +21,11 @@ var app = app || {};
 
 			this.listenTo(app.projects, 'add', this.addOne);
 			this.listenTo(app.projects, 'reset', this.addAll);
+			this.listenTo(app.projects, 'filter', this.selectProject);
 			this.listenTo(app.projects, 'new-area-selected', _.debounce(this.render, 0));
 
 			app.projects.fetch({reset: true});
+			if(app.ProjectFilter){this.selectProject();}
 			this.render();
 		},
 
@@ -35,6 +37,16 @@ var app = app || {};
 				this.$el.hide();
 			}
 			this.filterAll();
+		},
+
+		selectProject: function () {
+			app.projects.each(function(project){
+				project.select(false);
+				if(project.get('title').toLowerCase() === app.ProjectFilter.toLowerCase()){
+					app.selectedProjectID = project.id;
+					project.select(true);
+				}
+			});
 		},
 
 		filterOne: function (project) {

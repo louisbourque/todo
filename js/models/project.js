@@ -8,6 +8,11 @@ var app = app || {};
 		defaults: {
 			title: '',
 			area: ''
-		}
+		},
+		select: function(boolean){
+      this.save({
+      				selected: boolean
+      });
+    }
 	});
 })();

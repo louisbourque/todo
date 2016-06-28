@@ -11,7 +11,7 @@ var app = app || {};
 
 		events: {
 			'click label': 'select',
-			'dblclick label': 'edit',
+			'click .modify': 'edit',
 			'click .destroy': 'clear',
 			'keydown .edit': 'handleKeyPress',
 			'blur .edit': 'close'
@@ -37,9 +37,24 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$input = this.$('.edit');
+			if(app.selectedProjectID == this.model.id){
+				this.$el.addClass('selected');
+				app.projects.trigger('new-project-selected');
+			}
 			return this;
 		},
 
+		select: function() {
+			app.projects.each(this.clearSelection, this);
+			app.selectedProjectID = this.model.id;
+			$('.projects .selected').removeClass('selected');
+			this.model.set({selected: true});
+			this.updateNavigation(this);
+		},
+
+		clearSelection: function(project){
+			project.select(false);
+		},
 
 		toggleVisible: function () {
 					this.$el.toggleClass('hidden', this.isHidden());
@@ -69,6 +84,7 @@ var app = app || {};
 			}
 
 			this.$el.removeClass('editing');
+			this.updateNavigation(this);
 		},
 
 
@@ -83,6 +99,12 @@ var app = app || {};
 
 		clear: function () {
 			this.model.destroy();
+		},
+
+		updateNavigation: function(project){
+			app.AreaRouter.navigate(app.AreaFilter+'/'+project.model.get('title'), {trigger: true});
 		}
+
+
 	});
 })(jQuery);
