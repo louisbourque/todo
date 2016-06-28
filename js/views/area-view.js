@@ -49,6 +49,7 @@ var app = app || {};
 			app.selectedAreaID = this.model.id;
 			$('.selected').removeClass('selected');
 			this.model.set({selected: true});
+			app.AreaRouter.navigate(this.model.get('title'), {trigger: true});
 		},
 
 		clearSelection: function(area){
