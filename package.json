@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
   },
-  "author": "",
+  "author": "Louis Bourque",
+  "repository" :
+  { "type" : "git"
+    , "url" : "git+https://github.com/louisbourque/todo-timetracker.git"
+  },
   "license": "ISC",
   "dependencies": {
     "backbone": "^1.3.3",
