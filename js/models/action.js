@@ -4,11 +4,12 @@ var app = app || {};
 (function () {
 	'use strict';
 
-	app.Project = Backbone.Model.extend({
+	app.Action = Backbone.Model.extend({
 		defaults: {
 			title: '',
-			area: '',
-			selected: false
+			project: '',
+			selected: false,
+			completed: false
 		},
 		select: function(boolean){
       this.save({

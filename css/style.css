@@ -121,6 +121,16 @@ button.modify{
 	position: relative;
 	z-index: 2;
 	border-top: 1px solid #e6e6e6;
+	border-left: 2px solid #999;
+	padding-bottom: 500em;
+  margin-bottom: -500em;
+}
+.actions {
+	float: left;
+	position: relative;
+	z-index: 2;
+	border-top: 1px solid #e6e6e6;
+	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
 }
@@ -241,10 +251,6 @@ label[for='toggle-all'] {
 
 .item-list li.editing:last-child {
 	margin-bottom: -1px;
-}
-
-.areas{
-	border-right: 2px solid #999;
 }
 
 .info {

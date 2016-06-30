@@ -22,6 +22,13 @@
 				<ul class="item-list project-list"></ul>
 				<input class="new-item new-project" placeholder="Add Project" autofocus>
 			</section>
+			<section class="actions hidden">
+				<header class="header">
+					<h2>Actions</h2>
+				</header>
+				<ul class="item-list action-list"></ul>
+				<input class="new-item new-action" placeholder="Add Action" autofocus>
+			</section>
 		</section>
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
@@ -66,12 +73,16 @@
 		<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
 		<script src="js/models/area.js"></script>
 		<script src="js/models/project.js"></script>
+		<script src="js/models/action.js"></script>
 		<script src="js/collections/areas.js"></script>
 		<script src="js/collections/projects.js"></script>
+		<script src="js/collections/actions.js"></script>
 		<script src="js/views/arealist-view.js"></script>
 		<script src="js/views/projectlist-view.js"></script>
+		<script src="js/views/actionlist-view.js"></script>
 		<script src="js/views/area-view.js"></script>
 		<script src="js/views/project-view.js"></script>
+		<script src="js/views/action-view.js"></script>
 		<script src="js/routers/router.js"></script>
 		<script src="js/app.js"></script>
 	</body>

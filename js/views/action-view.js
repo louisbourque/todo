@@ -4,14 +4,13 @@ var app = app || {};
 (function ($) {
 	'use strict';
 
-	app.ProjectView = Backbone.View.extend({
+	app.ActionView = Backbone.View.extend({
 		tagName:  'li',
 
-		template: _.template($('#item-template').html()),
+		template: _.template($('#action-template').html()),
 
 		events: {
 			'click label': 'select',
-			'click .modify': 'edit',
 			'click .destroy': 'clear',
 			'keydown .edit': 'handleKeyPress',
 			'blur .edit': 'close'
@@ -37,23 +36,23 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$input = this.$('.edit');
-			if(app.selectedProjectID == this.model.id){
+			if(app.selectedActionID == this.model.id){
 				this.$el.addClass('selected');
-				app.actions.trigger('new-project-selected');
+				app.actions.trigger('new-action-selected');
 			}
 			return this;
 		},
 
 		select: function() {
-			app.projects.each(this.clearSelection, this);
-			app.selectedProjectID = this.model.id;
-			$('.projects .selected').removeClass('selected');
+			app.actions.each(this.clearSelection, this);
+			app.selectedActionID = this.model.id;
+			$('.actions .selected').removeClass('selected');
 			this.model.set({selected: true});
 			this.updateNavigation(this);
 		},
 
-		clearSelection: function(project){
-			project.select(false);
+		clearSelection: function(action){
+			action.select(false);
 		},
 
 		toggleVisible: function () {
@@ -61,7 +60,7 @@ var app = app || {};
 		},
 
 		isHidden: function () {
-			return !!app.selectedAreaID && this.model.get('area') != app.selectedAreaID;
+			return !!app.selectedProjectID && this.model.get('project') != app.selectedProjectID;
 		},
 
 		edit: function () {
@@ -101,8 +100,8 @@ var app = app || {};
 			this.model.destroy();
 		},
 
-		updateNavigation: function(project){
-			app.AreaRouter.navigate(app.AreaFilter+'/'+project.model.get('title'), {trigger: true});
+		updateNavigation: function(action){
+			app.AreaRouter.navigate(app.AreaFilter+'/'+app.ProjectFilter+'/'+action.model.get('title'), {trigger: true});
 		}
 
 

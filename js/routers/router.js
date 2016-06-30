@@ -6,15 +6,17 @@ var app = app || {};
 
 	var AreaRouter = Backbone.Router.extend({
 		routes: {
-			':area(/:project)': 'setFilter'
+			':area(/:project)(/:action)': 'setFilter'
 		},
 
-		setFilter: function (area,project) {
+		setFilter: function (area,project,action) {
 			app.AreaFilter = area || '';
 			app.ProjectFilter = project || '';
-			
+			app.ActionFilter = action || '';
+
 			app.areas.trigger('filter');
 			app.projects.trigger('filter');
+			app.actions.trigger('filter');
 		}
 	});
 
