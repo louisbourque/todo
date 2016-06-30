@@ -44,7 +44,9 @@ var app = app || {};
 		},
 
 		select: function() {
-			this.updateNavigation(this);
+			if(app.selectedActionID != this.model.id){
+				this.updateNavigation(this);
+			}
 		},
 
 		toggleVisible: function () {

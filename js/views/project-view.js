@@ -45,7 +45,9 @@ var app = app || {};
 		},
 
 		select: function() {
-			this.updateNavigation(this);
+			if(app.selectedProjectID != this.model.id){
+				this.updateNavigation(this);
+			}
 		},
 
 		toggleVisible: function () {

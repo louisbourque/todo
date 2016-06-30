@@ -45,7 +45,9 @@ var app = app || {};
 		},
 
 		select: function() {
-			this.updateNavigation(this);
+			if(app.selectedAreaID != this.model.id){
+				this.updateNavigation(this);
+			}
 		},
 
 		edit: function () {
