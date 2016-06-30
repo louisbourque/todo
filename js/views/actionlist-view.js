@@ -25,7 +25,7 @@ var app = app || {};
 			this.listenTo(app.actions, 'new-project-selected', _.debounce(this.render, 0));
 
 			app.actions.fetch({reset: true});
-			if(app.ActionFilter){this.selectAction();}
+			this.selectAction();
 			this.render();
 		},
 
@@ -40,9 +40,10 @@ var app = app || {};
 		},
 
 		selectAction: function () {
+			$('.actions .selected').removeClass('selected');
 			app.actions.each(function(action){
 				action.select(false);
-				if(action.get('title').toLowerCase() === app.ActionFilter.toLowerCase()){
+				if(app.ActionFilter && action.get('title').toLowerCase() === app.ActionFilter.toLowerCase()){
 					app.selectedActionID = action.id;
 					action.select(true);
 				}

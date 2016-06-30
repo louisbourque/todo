@@ -45,15 +45,7 @@ var app = app || {};
 		},
 
 		select: function() {
-			app.projects.each(this.clearSelection, this);
-			app.selectedProjectID = this.model.id;
-			$('.projects .selected').removeClass('selected');
-			this.model.set({selected: true});
 			this.updateNavigation(this);
-		},
-
-		clearSelection: function(project){
-			project.select(false);
 		},
 
 		toggleVisible: function () {

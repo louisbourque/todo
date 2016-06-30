@@ -25,7 +25,7 @@ var app = app || {};
 			this.listenTo(app.projects, 'new-area-selected', _.debounce(this.render, 0));
 
 			app.projects.fetch({reset: true});
-			if(app.ProjectFilter){this.selectProject();}
+			this.selectProject();
 			this.render();
 		},
 
@@ -40,9 +40,10 @@ var app = app || {};
 		},
 
 		selectProject: function () {
+			$('.projects .selected').removeClass('selected');
 			app.projects.each(function(project){
 				project.select(false);
-				if(project.get('title').toLowerCase() === app.ProjectFilter.toLowerCase()){
+				if(app.ProjectFilter && project.get('title').toLowerCase() === app.ProjectFilter.toLowerCase()){
 					app.selectedProjectID = project.id;
 					project.select(true);
 				}

@@ -45,15 +45,7 @@ var app = app || {};
 		},
 
 		select: function() {
-			app.areas.each(this.clearSelection, this);
-			app.selectedAreaID = this.model.id;
-			$('.areas .selected').removeClass('selected');
-			this.model.set({selected: true});
 			this.updateNavigation(this);
-		},
-
-		clearSelection: function(area){
-			area.select(false);
 		},
 
 		edit: function () {
@@ -94,11 +86,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(area){
-			if(app.ProjectFilter){
-				app.AreaRouter.navigate(area.model.get('title')+'/'+app.ProjectFilter, {trigger: true});
-			}else{
 				app.AreaRouter.navigate(area.model.get('title'), {trigger: true});
-			}
 		}
 	});
 })(jQuery);

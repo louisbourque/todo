@@ -44,15 +44,7 @@ var app = app || {};
 		},
 
 		select: function() {
-			app.actions.each(this.clearSelection, this);
-			app.selectedActionID = this.model.id;
-			$('.actions .selected').removeClass('selected');
-			this.model.set({selected: true});
 			this.updateNavigation(this);
-		},
-
-		clearSelection: function(action){
-			action.select(false);
 		},
 
 		toggleVisible: function () {
