@@ -21,26 +21,26 @@ var app = app || {};
 
 			this.listenTo(app.actions, 'add', this.addOne);
 			this.listenTo(app.actions, 'reset', this.addAll);
-			this.listenTo(app.actions, 'filter', this.selectProject);
-			this.listenTo(app.actions, 'new-project-selected', _.debounce(this.render, 0));
+			this.listenTo(app.actions, 'filter', this.render);
 
 			app.actions.fetch({reset: true});
-			this.selectAction();
+
 			this.render();
 		},
 
 		render: function () {
-
 			if (app.selectedProjectID) {
 				this.$el.show();
 			} else {
 				this.$el.hide();
 			}
 			this.filterAll();
+			this.selectAction();
 		},
 
 		selectAction: function () {
 			$('.actions .selected').removeClass('selected');
+			app.selectedActionID = '';
 			app.actions.each(function(action){
 				action.select(false);
 				if(app.ActionFilter && action.get('title').toLowerCase() === app.ActionFilter.toLowerCase()){

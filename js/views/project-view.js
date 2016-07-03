@@ -39,7 +39,7 @@ var app = app || {};
 			this.$input = this.$('.edit');
 			if(app.selectedProjectID == this.model.id){
 				this.$el.addClass('selected');
-				app.actions.trigger('new-project-selected');
+				//app.projects.trigger('new-project-selected');
 			}
 			return this;
 		},

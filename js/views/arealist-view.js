@@ -26,7 +26,7 @@ var app = app || {};
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
 			app.areas.fetch({reset: true});
-			this.selectArea();
+			this.render();
 		},
 
 		render: function () {
@@ -35,10 +35,12 @@ var app = app || {};
 			} else {
 				this.$areas.hide();
 			}
+			this.selectArea();
 		},
 
 		selectArea: function () {
 			$('.areas .selected').removeClass('selected');
+			app.selectedAreaID = '';
 			app.areas.each(function(area){
 				area.select(false);
 				if(app.AreaFilter && area.get('title').toLowerCase() === app.AreaFilter.toLowerCase()){

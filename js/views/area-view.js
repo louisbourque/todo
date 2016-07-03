@@ -38,7 +38,7 @@ var app = app || {};
 			this.$input = this.$('.edit');
 			if(app.selectedAreaID == this.model.id){
 				this.$el.addClass('selected');
-				app.projects.trigger('new-area-selected');
+				app.areas.trigger('new-area-selected');
 			}
 
 			return this;

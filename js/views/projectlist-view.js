@@ -21,11 +21,9 @@ var app = app || {};
 
 			this.listenTo(app.projects, 'add', this.addOne);
 			this.listenTo(app.projects, 'reset', this.addAll);
-			this.listenTo(app.projects, 'filter', this.selectProject);
-			this.listenTo(app.projects, 'new-area-selected', _.debounce(this.render, 0));
+			this.listenTo(app.projects, 'filter', this.render);
 
 			app.projects.fetch({reset: true});
-			this.selectProject();
 			this.render();
 		},
 
@@ -37,10 +35,12 @@ var app = app || {};
 				this.$el.hide();
 			}
 			this.filterAll();
+			this.selectProject();
 		},
 
 		selectProject: function () {
 			$('.projects .selected').removeClass('selected');
+			app.selectedProjectID = '';
 			app.projects.each(function(project){
 				project.select(false);
 				if(app.ProjectFilter && project.get('title').toLowerCase() === app.ProjectFilter.toLowerCase()){
