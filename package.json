@@ -8,9 +8,9 @@
     "start": "lite-server"
   },
   "author": "Louis Bourque",
-  "repository" :
-  { "type" : "git"
-    , "url" : "git+https://github.com/louisbourque/todo-timetracker.git"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louisbourque/todo-timetracker.git"
   },
   "license": "ISC",
   "dependencies": {
