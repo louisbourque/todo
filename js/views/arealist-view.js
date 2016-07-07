@@ -19,8 +19,7 @@ var app = app || {};
 
 			this.listenTo(app.areas, 'add', this.addOne);
 			this.listenTo(app.areas, 'reset', this.addAll);
-			this.listenTo(app.areas, 'filter', this.selectArea);
-			this.listenTo(app.areas, 'all', _.debounce(this.render, 0));
+			this.listenTo(app.areas, 'filter', this.render);
 
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
