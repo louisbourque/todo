@@ -92,7 +92,9 @@ var app = app || {};
 		},
 
 		clear: function () {
-			this.model.destroy();
+			if(confirm("You are about to permanently delete this project and all associated actions. Continue?")){
+				this.model.destroy();
+			}
 		},
 
 		updateNavigation: function(project){

@@ -91,7 +91,9 @@ var app = app || {};
 		},
 
 		clear: function () {
-			this.model.destroy();
+			if(confirm("You are about to permanently delete this action. Continue?")){
+				this.model.destroy();
+			}
 		},
 
 		updateNavigation: function(action){
