@@ -4,6 +4,7 @@ var app = app || {};
 (function () {
 	'use strict';
 
+	app.ActionStatusFilter = 'all';
 	var AreaRouter = Backbone.Router.extend({
 		routes: {
 			':area(/p:project)(/a:action)(/f:filter)': 'setFilter'
@@ -23,6 +24,4 @@ var app = app || {};
 
 	app.AreaRouter = new AreaRouter();
 	Backbone.history.start();
-	//initiate with default values
-	app.AreaRouter.setFilter();
 })();
