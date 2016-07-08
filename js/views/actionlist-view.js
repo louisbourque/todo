@@ -36,7 +36,6 @@ var app = app || {};
 		},
 
 		render: function () {
-			console.log('action render');
 			var completed = app.actions.completed().length;
 			var remaining = app.actions.remaining().length;
 
