@@ -23,4 +23,6 @@ var app = app || {};
 
 	app.AreaRouter = new AreaRouter();
 	Backbone.history.start();
+	//initiate with default values
+	app.AreaRouter.setFilter();
 })();
