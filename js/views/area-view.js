@@ -89,7 +89,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(area){
-				app.AreaRouter.navigate(area.model.get('title'), {trigger: true});
+				app.AreaRouter.navigate(area.model.get('title')+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 	});
 })(jQuery);

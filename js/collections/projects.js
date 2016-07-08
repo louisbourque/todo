@@ -11,9 +11,6 @@ var app = app || {};
 		nextOrder: function () {
 			return this.length ? this.last().get('order') + 1 : 1;
 		},
-		filterByArea: function (areaID) {
-					return this.where({id: areaID});
-		},
 		selected: function () {
 					return this.where({selected: true});
 		}

@@ -97,7 +97,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(project){
-			app.AreaRouter.navigate(app.AreaFilter+'/'+project.model.get('title'), {trigger: true});
+			app.AreaRouter.navigate(app.AreaFilter+'/p'+project.model.get('title')+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 

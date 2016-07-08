@@ -6,16 +6,19 @@ var app = app || {};
 
 	var Actions = Backbone.Collection.extend({
 		model: app.Action,
-		localStorage: new Backbone.LocalStorage('todo-timetrack-projects'),
+		localStorage: new Backbone.LocalStorage('todo-timetrack-actions'),
 		comparator: 'order',
 		nextOrder: function () {
 			return this.length ? this.last().get('order') + 1 : 1;
 		},
-		filterByProject: function (projectID) {
-					return this.where({id: projectID});
-		},
 		selected: function () {
 					return this.where({selected: true});
+		},
+		completed: function () {
+			return this.where({completed: true,project: app.selectedProjectID});
+		},
+		remaining: function () {
+			return this.where({completed: false,project: app.selectedProjectID});
 		}
 	});
 

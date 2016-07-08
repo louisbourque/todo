@@ -15,6 +15,12 @@ var app = app || {};
       this.save({
       				selected: boolean
       });
-    }
+    },
+		toggleCompleted: function () {
+			this.save({
+				completed: !this.get('completed')
+			});
+			app.actions.trigger('toggleCompleted');
+}
 	});
 })();

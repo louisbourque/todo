@@ -12,6 +12,7 @@ var app = app || {};
 		events: {
 			'click label': 'select',
 			'click .destroy': 'clear',
+			'click .toggle': 'toggleCompleted',
 			'keydown .edit': 'handleKeyPress',
 			'blur .edit': 'close'
 		},
@@ -53,8 +54,14 @@ var app = app || {};
 					this.$el.toggleClass('hidden', this.isHidden());
 		},
 
+		toggleCompleted: function () {
+			this.model.toggleCompleted();
+		},
+
 		isHidden: function () {
-			return !!app.selectedProjectID && this.model.get('project') != app.selectedProjectID;
+			return !!app.selectedProjectID && this.model.get('project') != app.selectedProjectID
+			|| (app.ActionStatusFilter != 'all' && (this.model.get('completed') && app.ActionStatusFilter === 'active')
+					|| (!this.model.get('completed') && app.ActionStatusFilter === 'completed'));
 		},
 
 		edit: function () {
@@ -97,7 +104,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(action){
-			app.AreaRouter.navigate(app.AreaFilter+'/'+app.ProjectFilter+'/'+action.model.get('title'), {trigger: true});
+			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/a'+action.model.get('title')+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 
