@@ -53,7 +53,7 @@
 			<input class="edit" value="<%- title %>">
 		</script>
 		<script type="text/template" id="status-filter-template">
-			<div class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'action' : 'actions' %> left</div>
+
 			<ul class="filters">
 				<li>
 					<button class="selected-filter filter-all">All</button>
@@ -65,8 +65,8 @@
 					<button class="filter-completed">Completed</button>
 				</li>
 			</ul>
-
-			<button class="clear-completed <% if (!completed) { %>invisible<% } %>">Clear completed</button>
+			<div class="todo-count"><strong><%= remaining %></strong> left</div>
+			<div class="clear-completed-div <% if (!completed) { %>invisible<% } %>"><button class="clear-completed">Clear completed</button></div>
 
 		</script>
 		<script src="node_modules/jquery/dist/jquery.js"></script>

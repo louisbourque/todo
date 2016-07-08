@@ -123,8 +123,10 @@ var app = app || {};
 
 		// Clear all completed todo items, destroying their models.
 		clearCompleted: function () {
-			_.invoke(app.actions.completed(), 'destroy');
-			app.actions.trigger('toggleCompleted');
+			if(confirm("Are you sure you want to clear all completed actions?")){
+				_.invoke(app.actions.completed(), 'destroy');
+				app.actions.trigger('toggleCompleted');
+			}
 			return false;
 		},
 

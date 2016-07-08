@@ -16,6 +16,7 @@ button {
 	color: inherit;
 	-webkit-appearance: none;
 	appearance: none;
+	cursor: pointer;
 }
 
 body {
@@ -31,10 +32,6 @@ body {
 button,
 input[type="checkbox"] {
 	outline: none;
-}
-
-button{
-	cursor: pointer;
 }
 
 .hidden {
@@ -77,6 +74,7 @@ button{
 	font-size: 200%;
 	text-align: center;
 	color: rgba(2, 3, 113, 0.55);
+	margin:15px 0px;
 }
 
 .new-item,
@@ -294,7 +292,7 @@ button{
 }
 
 .todo-count {
-	text-align: left;
+	float: left;
 	padding-bottom:4px;
 }
 
@@ -330,6 +328,10 @@ button{
 
 .filters li button.selected {
 	border-color: rgba(175, 47, 47, 0.2);
+}
+
+.clear-completed-div{
+	text-align: right;
 }
 
 .invisible{
