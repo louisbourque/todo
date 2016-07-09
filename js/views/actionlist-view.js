@@ -83,13 +83,13 @@ var app = app || {};
 		},
 
 		setFilterAll: function() {
-			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/fall', {trigger: true});
+			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+(app.ActionFilter ? '/a'+app.ActionFilter : '' )+'/fall', {trigger: true});
 		},
 		setFilterActive: function() {
-			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/factive', {trigger: true});
+			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+(app.ActionFilter ? '/a'+app.ActionFilter : '' )+'/factive', {trigger: true});
 		},
 		setFilterCompleted: function() {
-			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/fcompleted', {trigger: true});
+			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+(app.ActionFilter ? '/a'+app.ActionFilter : '' )+'/fcompleted', {trigger: true});
 		},
 
 		addOne: function (action) {
