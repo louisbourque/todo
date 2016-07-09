@@ -47,6 +47,8 @@ var app = app || {};
 		select: function() {
 			if(app.selectedActionID != this.model.id){
 				this.updateNavigation(this);
+			}else{
+				this.updateNavigationNoAction(this);
 			}
 		},
 
@@ -105,6 +107,10 @@ var app = app || {};
 
 		updateNavigation: function(action){
 			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/a'+action.model.get('title')+'/f'+app.ActionStatusFilter, {trigger: true});
+		},
+
+		updateNavigationNoAction: function(action){
+			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 

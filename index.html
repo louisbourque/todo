@@ -32,9 +32,15 @@
 				<ul class="item-list action-list"></ul>
 				<input class="new-item new-action" placeholder="Add Action" autofocus>
 			</section>
+			<section class="action-details hidden">
+				<header class="header">
+					<h2>Action Details</h2>
+				</header>
+				<div class="action-details-div"></div>
+			</section>
 		</section>
 		<footer class="info">
-			<p>Double-click to edit a todo</p>
+
 		</footer>
 		<script type="text/template" id="item-template">
 			<div class="view">
@@ -52,8 +58,15 @@
 			</div>
 			<input class="edit" value="<%- title %>">
 		</script>
+		<script type="text/template" id="action-details-template">
+			<div class="view">
+				<input id="action-completed" class="toggle" type="checkbox" <%= action.get('completed') ? 'checked' : '' %>>
+				<label for="action-completed">Completed</label>
+				<button class="destroy fa fa-trash"></button>
+			</div>
+			<input id="action-title" class="edit" value="<%- action.get('title') %>">
+		</script>
 		<script type="text/template" id="status-filter-template">
-
 			<ul class="filters">
 				<li>
 					<button class="selected-filter filter-all">All</button>
@@ -82,6 +95,7 @@
 		<script src="js/views/arealist-view.js"></script>
 		<script src="js/views/projectlist-view.js"></script>
 		<script src="js/views/actionlist-view.js"></script>
+		<script src="js/views/action-details-view.js"></script>
 		<script src="js/views/area-view.js"></script>
 		<script src="js/views/project-view.js"></script>
 		<script src="js/views/action-view.js"></script>

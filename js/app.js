@@ -10,4 +10,5 @@ $(function () {
 	new app.AreaListView();
 	new app.ProjectListView();
 	new app.ActionListView();
+	new app.ActionDetailsView();
 });

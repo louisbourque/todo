@@ -17,7 +17,6 @@ var app = app || {};
 			this.$footer = this.$('.footer');
 			this.$list = $('.project-list');
 			this.$el.removeClass('hidden');
-			this.selectedID = '';
 
 			this.listenTo(app.projects, 'add', this.addOne);
 			this.listenTo(app.projects, 'reset', this.addAll);

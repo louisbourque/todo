@@ -23,10 +23,10 @@ var app = app || {};
 			this.$list = $('.action-list');
 			this.allCheckbox = this.$('.toggle-all')[0];
 			this.$el.removeClass('hidden');
-			this.selectedID = '';
 
 			this.listenTo(app.actions, 'add', this.addOne);
 			this.listenTo(app.actions, 'reset', this.addAll);
+			this.listenTo(app.actions, 'remove', this.render);
 			this.listenTo(app.actions, 'filter', this.render);
 			this.listenTo(app.actions, 'toggleCompleted', this.render);
 
@@ -71,6 +71,7 @@ var app = app || {};
 					action.select(true);
 				}
 			});
+			app.actions.trigger('actionSeletected');
 		},
 
 		filterOne: function (action) {

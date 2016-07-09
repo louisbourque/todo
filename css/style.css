@@ -129,6 +129,17 @@ input[type="checkbox"] {
   margin-bottom: -500em;
 }
 
+.action-details {
+	float: left;
+	position: relative;
+	z-index: 2;
+	border-top: 1px solid #e6e6e6;
+	border-left: 2px solid #999;
+	padding-bottom: 500em;
+  margin-bottom: -500em;
+	width: 300px;
+}
+
 .item-list {
 	margin: 0;
 	padding: 0;
@@ -197,7 +208,7 @@ input[type="checkbox"] {
 	text-decoration: line-through;
 }
 
-.item-list li .destroy {
+.item-list li .destroy, .action-details .destroy {
 	display: none;
 	position: absolute;
 	top: 5px;
@@ -212,10 +223,18 @@ input[type="checkbox"] {
 	transition: color 0.2s ease-out;
 }
 
-.item-list li:hover .destroy {
+.item-list li:hover .destroy{
 	display: block;
 }
-
+.action-details .destroy{
+	display: block;
+	position: relative;
+	top:0;
+	float: right;
+}
+.action-details-div .view{
+	padding:5px;
+}
 
 .item-list li .modify {
 	display: none;
