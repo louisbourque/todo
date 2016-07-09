@@ -52,12 +52,11 @@ var app = app || {};
 		},
 
 		handleKeyPress: function (e) {
-			app.e = e;
 			if (e.which === ESC_KEY) {
-				$(e.target).val(app.e.target.defaultValue);
+				$(e.target).val(e.target.defaultValue);
 				this.close(e.target);
 			}else if(e.which === ENTER_KEY){
-				$(app.e.target).blur()
+				$(e.target).blur()
 			}
 			this.close(e.target);
 		},
