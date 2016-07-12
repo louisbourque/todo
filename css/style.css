@@ -137,7 +137,7 @@ input[type="checkbox"] {
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
-	width: 300px;
+	width: 400px;
 }
 
 .item-list {
@@ -237,6 +237,10 @@ input[type="checkbox"] {
 }
 label[for="action-note"]{
 	margin:5px;
+}
+.action-details-div .edit{
+	margin:1%;
+	width:98%;
 }
 
 .item-list li .modify {
