@@ -56,7 +56,9 @@ var app = app || {};
 				$(e.target).val(e.target.defaultValue);
 				this.close(e.target);
 			}else if(e.which === ENTER_KEY){
-				$(e.target).blur()
+				if(e.target.nodeName.toUpperCase() === 'INPUT'){
+					$(e.target).blur()
+				}
 			}
 			this.close(e.target);
 		},
@@ -69,6 +71,8 @@ var app = app || {};
 			if (trimmedValue) {
 				if(target.id === 'action-title'){
 					this.selectedAction.save({ title: trimmedValue });
+				}else if(target.id === 'action-note'){
+					this.selectedAction.save({ note: trimmedValue });
 				}
 			}
 		},

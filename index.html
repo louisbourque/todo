@@ -65,6 +65,8 @@
 				<button class="destroy fa fa-trash"></button>
 			</div>
 			<input id="action-title" class="edit" value="<%- action.get('title') %>">
+			<label for="action-note">Notes:</label><br>
+			<textarea id="action-note" class="edit"><%- action.get('note') %></textarea>
 		</script>
 		<script type="text/template" id="status-filter-template">
 			<ul class="filters">

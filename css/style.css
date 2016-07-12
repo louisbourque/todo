@@ -235,6 +235,9 @@ input[type="checkbox"] {
 .action-details-div .view{
 	padding:5px;
 }
+label[for="action-note"]{
+	margin:5px;
+}
 
 .item-list li .modify {
 	display: none;

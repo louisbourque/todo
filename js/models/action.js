@@ -7,6 +7,7 @@ var app = app || {};
 	app.Action = Backbone.Model.extend({
 		defaults: {
 			title: '',
+			note:'',
 			project: '',
 			selected: false,
 			completed: false
