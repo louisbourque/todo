@@ -5,6 +5,7 @@
 		<title>ToDo - Timetracker</title>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="node_modules/jquery-ui/themes/base/all.css">
 	</head>
 	<body>
 		<section class="todoapp">
@@ -42,6 +43,9 @@
 		<footer class="info">
 
 		</footer>
+		<div id="dialog-confirm" class="hidden">
+  		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><span id="dialog-message"></span></p>
+		</div>
 		<script type="text/template" id="item-template">
 			<div class="view">
 				<button class="modify fa fa-pencil-square-o"></button>
@@ -85,6 +89,7 @@
 
 		</script>
 		<script src="node_modules/jquery/dist/jquery.js"></script>
+		<script src="node_modules/jquery-ui/dist/jquery-ui.js"></script>
 		<script src="node_modules/underscore/underscore.js"></script>
 		<script src="node_modules/backbone/backbone.js"></script>
 		<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>

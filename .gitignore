@@ -43,6 +43,12 @@ node_modules/jquery/*
 !node_modules/jquery/dist
 node_modules/jquery/dist/*
 !node_modules/jquery/dist/jquery.js
+!node_modules/jquery-ui/*
+node_modules/jquery-ui/*
+!node_modules/jquery-ui/dist
+node_modules/jquery-ui/dist/*
+!node_modules/jquery-ui/dist/jquery-ui.js
+!node_modules/jquery-ui/themes
 node_modules/underscore/*
 !node_modules/underscore/underscore.js
 node_modules/backbone/*

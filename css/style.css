@@ -368,6 +368,10 @@ label[for="toggle-all"]{
 	padding-bottom: 5px;
 }
 
+#dialog-confirm #dialog-message{
+	vertical-align: center;
+}
+
 /*
 	Hack to remove background from Mobile Safari.
 	Can't use it globally since it destroys checkboxes in Firefox
