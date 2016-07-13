@@ -110,6 +110,7 @@ input[type="checkbox"] {
 	border-top: 1px solid #e6e6e6;
 	padding-bottom: 500em;
   margin-bottom: -500em;
+	width: 280px;
 }
 .projects {
 	float: left;
@@ -119,6 +120,7 @@ input[type="checkbox"] {
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
+	width: 280px;
 }
 .actions {
 	float: left;
@@ -128,6 +130,7 @@ input[type="checkbox"] {
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
+	width: 280px;
 }
 
 .action-details {
@@ -196,8 +199,7 @@ input[type="checkbox"] {
 
 .item-list li label {
 	white-space: pre-line;
-	word-break: break-all;
-	padding: 10px 10px 5px 5px;
+	padding: 10px 25px 5px 5px;
 	margin-left: 29px;
 	display: block;
 	line-height: 1.2;
@@ -213,7 +215,7 @@ input[type="checkbox"] {
 	display: none;
 	position: absolute;
 	top: 5px;
-	right: 10px;
+	right: 5px;
 	bottom: 0;
 	width: 30px;
 	height: 30px;

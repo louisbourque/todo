@@ -106,7 +106,6 @@ var app = app || {};
 		// Add all items in the **Todos** collection at once.
 		addAll: function () {
 			this.$list.html('');
-			//TODO: get selected area, call .each on
 			app.actions.each(this.addOne, this);
 		},
 
