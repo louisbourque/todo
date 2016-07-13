@@ -78,7 +78,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(){
-			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/a'+this.selectedAction.get('title')+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+'/a'+encodeURIComponent(this.selectedAction.get('title'))+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 	});

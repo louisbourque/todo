@@ -123,11 +123,11 @@ var app = app || {};
 		},
 
 		updateNavigation: function(action){
-			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/a'+action.model.get('title')+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+'/a'+encodeURIComponent(action.model.get('title'))+'/f'+app.ActionStatusFilter, {trigger: true});
 		},
 
 		updateNavigationNoAction: function(action){
-			app.AreaRouter.navigate(app.AreaFilter+'/p'+app.ProjectFilter+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 

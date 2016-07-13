@@ -115,7 +115,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(project){
-			app.AreaRouter.navigate(app.AreaFilter+'/p'+project.model.get('title')+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(project.model.get('title'))+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 
