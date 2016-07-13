@@ -46,6 +46,7 @@ var app = app || {};
 		select: function() {
 			if(app.selectedAreaID != this.model.id){
 				this.updateNavigation(this);
+				$('.new-project').focus();
 			}
 		},
 
