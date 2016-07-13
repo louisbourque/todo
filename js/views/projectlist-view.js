@@ -22,6 +22,12 @@ var app = app || {};
 			this.listenTo(app.projects, 'reset', this.addAll);
 			this.listenTo(app.projects, 'filter', this.render);
 
+			$('.new-project').focus(function(){
+				$('.project-hint').removeClass('hidden');
+			}).blur(function(){
+				$('.project-hint').addClass('hidden');
+			});
+
 			app.projects.fetch({reset: true});
 			this.render();
 		},

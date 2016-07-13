@@ -21,6 +21,12 @@ var app = app || {};
 			this.listenTo(app.areas, 'reset', this.addAll);
 			this.listenTo(app.areas, 'filter', this.render);
 
+			$('.new-area').focus(function(){
+				$('.area-hint').removeClass('hidden');
+			}).blur(function(){
+				$('.area-hint').addClass('hidden');
+			});
+
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.

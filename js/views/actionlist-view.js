@@ -30,6 +30,12 @@ var app = app || {};
 			this.listenTo(app.actions, 'filter', this.render);
 			this.listenTo(app.actions, 'toggleCompleted', this.render);
 
+			$('.new-action').focus(function(){
+				$('.action-hint').removeClass('hidden');
+			}).blur(function(){
+				$('.action-hint').addClass('hidden');
+			});
+
 			app.actions.fetch({reset: true});
 
 			this.render();
