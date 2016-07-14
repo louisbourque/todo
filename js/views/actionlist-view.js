@@ -140,9 +140,11 @@ var app = app || {};
 			var completed = this.allCheckbox.checked;
 
 			app.actions.each(function (action) {
-				action.save({
-					completed: completed
-				});
+				if(action.get('project') === app.selectedProjectID){
+					action.save({
+						completed: completed
+					});
+				}
 			});
 			app.actions.trigger('toggleCompleted');
 		}
