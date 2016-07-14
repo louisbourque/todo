@@ -129,10 +129,26 @@ var app = app || {};
 
 		// Clear all completed todo items, destroying their models.
 		clearCompleted: function () {
-			if(confirm("Are you sure you want to clear all completed actions?")){
-				_.invoke(app.actions.completed(), 'destroy');
-				app.actions.trigger('toggleCompleted');
-			}
+			$( function() {
+				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently clear all completed actions?');
+				$( "#dialog-confirm" ).dialog({
+					title:"Clear Completed",
+					resizable: false,
+					height: "auto",
+					width: 400,
+					modal: true,
+					buttons: {
+						"Clear Completed": function() {
+							_.invoke(app.actions.completedByProject(app.selectedProjectID), 'destroy');
+							app.actions.trigger('toggleCompleted');
+							$( this ).dialog( "close" );
+						},
+						Cancel: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
+			});
 			return false;
 		},
 
