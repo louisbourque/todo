@@ -89,13 +89,13 @@ var app = app || {};
 		},
 
 		setFilterAll: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+app.ActionFilter : '' )+'/fall', {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/fall', {trigger: true});
 		},
 		setFilterActive: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+app.ActionFilter : '' )+'/factive', {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/factive', {trigger: true});
 		},
 		setFilterCompleted: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+app.ActionFilter : '' )+'/fcompleted', {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/fcompleted', {trigger: true});
 		},
 
 		addOne: function (action) {
