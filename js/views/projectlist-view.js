@@ -21,6 +21,8 @@ var app = app || {};
 			this.listenTo(app.projects, 'add', this.addOne);
 			this.listenTo(app.projects, 'reset', this.addAll);
 			this.listenTo(app.projects, 'filter', this.render);
+			this.listenTo(app.actions, 'update', _.debounce(this.updateCompleteCountsAll,0));
+			this.listenTo(app.actions, 'change:completed', _.debounce(this.updateCompleteCountsAll,0));
 
 			$('.new-project').focus(function(){
 				$('.project-hint').removeClass('hidden');
@@ -53,6 +55,15 @@ var app = app || {};
 					project.select(true);
 				}
 			});
+		},
+
+		updateCompleteCountsAll: function(){
+			app.projects.each(this.updateCompleteCountsOne, this);
+		},
+
+		updateCompleteCountsOne: function(project){
+			project.save({completedCount:app.actions.completedByProject(project.id).length,
+										remainingCount:app.actions.remainingByProject(project.id).length});
 		},
 
 		filterOne: function (project) {

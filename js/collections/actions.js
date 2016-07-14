@@ -19,6 +19,12 @@ var app = app || {};
 		},
 		remaining: function () {
 			return this.where({completed: false,project: app.selectedProjectID});
+		},
+		completedByProject: function (projectID) {
+			return this.where({completed: true,project: projectID});
+		},
+		remainingByProject: function (projectID) {
+			return this.where({completed: false,project: projectID});
 		}
 	});
 

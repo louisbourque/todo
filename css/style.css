@@ -207,8 +207,13 @@ input[type="checkbox"] {
 }
 
 .item-list li.completed label {
-	color: #d9d9d9;
+	color: #909090;
 	text-decoration: line-through;
+}
+
+.project-stats{
+	font-size:80%;
+	color: #909090;
 }
 
 .item-list li .destroy, .action-details .destroy {
@@ -279,7 +284,7 @@ label[for="action-note"]{
 
 .info {
 	margin: 65px auto 0;
-	color: #bfbfbf;
+	color: #909090;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	text-align: center;
 	clear: both;

@@ -8,7 +8,9 @@ var app = app || {};
 		defaults: {
 			title: '',
 			area: '',
-			selected: false
+			selected: false,
+			completedCount: 0,
+			remainingCount: 0,
 		},
 		select: function(boolean){
       this.save({
