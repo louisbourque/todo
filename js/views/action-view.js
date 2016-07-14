@@ -36,6 +36,7 @@ var app = app || {};
 			}
 
 			this.$el.html(this.template(this.model.toJSON()));
+			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.$input = this.$('.edit');
 			if(app.selectedActionID == this.model.id){
 				this.$el.addClass('selected');
