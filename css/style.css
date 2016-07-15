@@ -81,7 +81,7 @@ input[type="checkbox"] {
 .edit {
 	position: relative;
 	margin: 0;
-	width: 226px;
+	width: 280px;
 	font-size: 120%;
 	font-family: inherit;
 	font-weight: inherit;
@@ -200,10 +200,13 @@ input[type="checkbox"] {
 .item-list li label {
 	white-space: pre-line;
 	padding: 10px 25px 5px 5px;
-	margin-left: 29px;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
+}
+
+.action-list li label {
+	margin-left: 29px;
 }
 
 .item-list li.completed label {

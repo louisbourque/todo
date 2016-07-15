@@ -11,7 +11,7 @@ var app = app || {};
 
 		events: {
 			'click label': 'select',
-			'click .modify': 'edit',
+			'dblclick label': 'edit',
 			'click .destroy': 'clear',
 			'keydown .edit': 'handleKeyPress',
 			'blur .edit': 'close'
@@ -44,6 +44,8 @@ var app = app || {};
 		},
 
 		select: function() {
+			//workaround - clicking a label doesn't trigger blur and input stays visible
+			$('.editing').removeClass('editing');
 			if(!app.dragged && app.selectedProjectID != this.model.id){
 				this.updateNavigation(this);
 				$('.new-action').focus();
@@ -68,6 +70,11 @@ var app = app || {};
 			var trimmedValue = value.trim();
 
 			if (!this.$el.hasClass('editing')) {
+				return;
+			}
+
+			if(trimmedValue === this.model.get('title')){
+				this.$el.removeClass('editing');
 				return;
 			}
 
