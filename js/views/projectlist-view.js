@@ -89,7 +89,6 @@ var app = app || {};
 		},
 
 		addOne: function (project) {
-			console.log(project);
 			var view = new app.ProjectView({ model: project });
 			this.$list.append(view.render().el);
 		},
