@@ -234,7 +234,7 @@ input[type="checkbox"] {
 	transition: color 0.2s ease-out;
 }
 
-.item-list li:hover .destroy{
+.item-list li.selected .destroy{
 	display: block;
 }
 .action-details .destroy{
@@ -382,6 +382,9 @@ label[for="toggle-all"]{
 #dialog-confirm #dialog-message{
 	vertical-align: center;
 }
+
+.droppable-project.active,.droppable-area.active  { background: #CFC; }
+.droppable-project.hovered,.droppable-area.hovered { background: #CCF; }
 
 /*
 	Hack to remove background from Mobile Safari.

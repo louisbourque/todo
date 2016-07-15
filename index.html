@@ -51,7 +51,7 @@
 		</div>
 		<script type="text/template" id="item-template">
 			<div class="view">
-				<label data-id="<%- id %>"><%- title %> <span class="project-stats"><% print (typeof(completedCount) === "undefined" ? '' : completedCount+remainingCount == 0 ? '(no actions) ': ((completedCount/(completedCount+remainingCount))*100).toFixed(1) + '%&nbsp;done&nbsp;(' + completedCount + '/' + (completedCount+remainingCount) + ')') %><span></label>
+				<label class="title-label" data-id="<%- id %>"><%- title %> <span class="project-stats"><% print (typeof(completedCount) === "undefined" ? '' : completedCount+remainingCount == 0 ? '(no actions) ': ((completedCount/(completedCount+remainingCount))*100).toFixed(1) + '%&nbsp;done&nbsp;(' + completedCount + '/' + (completedCount+remainingCount) + ')') %><span></label>
 				<button class="destroy fa fa-trash"></button>
 			</div>
 			<input class="edit" value="<%- title %>">
@@ -59,7 +59,7 @@
 		<script type="text/template" id="action-template">
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-				<label data-id="<%- id %>"><%- title %></label>
+				<label class="title-label" data-id="<%- id %>"><%- title %></label>
 				<button class="destroy fa fa-trash"></button>
 			</div>
 			<input class="edit" value="<%- title %>">

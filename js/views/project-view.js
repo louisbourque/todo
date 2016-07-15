@@ -37,6 +37,7 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$input = this.$('.edit');
+			this.$el.addClass('droppable-project draggable-project');
 			if(app.selectedProjectID == this.model.id){
 				this.$el.addClass('selected');
 			}

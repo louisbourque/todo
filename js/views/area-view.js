@@ -36,6 +36,7 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$input = this.$('.edit');
+			this.$el.addClass('droppable-area');
 			if(app.selectedAreaID == this.model.id){
 				this.$el.addClass('selected');
 			}

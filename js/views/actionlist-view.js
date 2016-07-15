@@ -37,47 +37,20 @@ var app = app || {};
 				$('.action-hint').addClass('hidden');
 			});
 
-			$( ".area-list" ).sortable({
-				revert: true,
-				start: function(event, ui) {
-          app.dragged = true;
-        },
-        stop: function(event, ui) {
-					app.dragged = false;
-        },
-				update: function( event, ui ) {
-					app.areas.trigger('updateOrder');
-				}
-			});
-			$( ".project-list" ).sortable({
-				revert: true,
-				start: function(event, ui) {
-          app.dragged = true;
-        },
-        stop: function(event, ui) {
-					app.dragged = false;
-        },
-				update: function( event, ui ) {
-					app.projects.trigger('updateOrder');
-				}
-			});
-			var dropped = false;
-			var draggable_sibling;
-
 			$( ".action-list" ).sortable({
 				revert: true,
 				start: function(event, ui) {
 					app.dragged = true;
-            draggable_sibling = $(ui.item).prev();
+            app.draggable_sibling = $(ui.item).prev();
         },
         stop: function(event, ui) {
 					app.dragged = false;
-            if (dropped) {
-                if (draggable_sibling.length == 0)
+            if (app.dropped) {
+                if (app.draggable_sibling.length == 0)
                     $('.action-list').prepend(ui.item);
 
-                draggable_sibling.after(ui.item);
-                dropped = false;
+                app.draggable_sibling.after(ui.item);
+                app.dropped = false;
             }
         },
 				update: function( event, ui ) {

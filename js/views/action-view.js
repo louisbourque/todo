@@ -38,6 +38,7 @@ var app = app || {};
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.$input = this.$('.edit');
+			this.$el.addClass('draggable-action');
 			if(app.selectedActionID == this.model.id){
 				this.$el.addClass('selected');
 				app.actions.trigger('new-action-selected');

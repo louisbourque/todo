@@ -31,6 +31,19 @@ var app = app || {};
 				$('.project-hint').addClass('hidden');
 			});
 
+			$( ".project-list" ).sortable({
+				revert: true,
+				start: function(event, ui) {
+					app.dragged = true;
+				},
+				stop: function(event, ui) {
+					app.dragged = false;
+				},
+				update: function( event, ui ) {
+					app.projects.trigger('updateOrder');
+				}
+			});
+
 			app.projects.fetch({reset: true});
 			this.render();
 		},
@@ -46,6 +59,22 @@ var app = app || {};
 			this.selectProject();
 		},
 
+		resetDroppable: function(){
+			$(".droppable-project").droppable({
+				accept: ".draggable-action",
+				activeClass: 'active',
+				hoverClass:'hovered',
+				drop:function(event,ui){
+					app.dropped = true;
+					var action = app.actions.get($(ui.draggable).find('.title-label').data('id'));
+					action.save({
+									project: $(event.target).find('.title-label').data('id')
+					});
+					app.actions.trigger('filter');
+					app.actions.trigger('update');//trigger update of complete stats
+				}
+			});
+		},
 		updateOrder: function(){
 			$('.project-list li').each(function(i){
 				for(var j in app.projects.models){
@@ -57,6 +86,7 @@ var app = app || {};
 					}
 				}
 			});
+			this.resetDroppable();
 		},
 
 		selectProject: function () {
@@ -69,6 +99,7 @@ var app = app || {};
 					project.select(true);
 				}
 			});
+			this.resetDroppable();
 		},
 
 		updateCompleteCountsAll: function(){

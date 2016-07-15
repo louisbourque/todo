@@ -28,6 +28,19 @@ var app = app || {};
 				$('.area-hint').addClass('hidden');
 			});
 
+			$( ".area-list" ).sortable({
+				revert: true,
+				start: function(event, ui) {
+					app.dragged = true;
+				},
+				stop: function(event, ui) {
+					app.dragged = false;
+				},
+				update: function( event, ui ) {
+					app.areas.trigger('updateOrder');
+				}
+			});
+
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
@@ -44,6 +57,21 @@ var app = app || {};
 			this.selectArea();
 		},
 
+		resetDroppable: function(){
+			$(".droppable-area").droppable({
+				accept: ".draggable-project",
+				activeClass: 'active',
+				hoverClass:'hovered',
+				drop:function(event,ui){
+					app.dropped = true;
+					var project = app.projects.get($(ui.draggable).find('.title-label').data('id'));
+					project.save({
+									area: $(event.target).find('.title-label').data('id')
+					});
+					app.projects.trigger('filter');
+				}
+			});
+		},
 		updateOrder: function(){
 			$('.area-list li').each(function(i){
 				for(var j in app.areas.models){
@@ -55,6 +83,7 @@ var app = app || {};
 					}
 				}
 			});
+			this.resetDroppable();
 		},
 
 		selectArea: function () {
@@ -67,6 +96,7 @@ var app = app || {};
 					area.select(true);
 				}
 			});
+			this.resetDroppable();
 		},
 
 		addOne: function (area) {
