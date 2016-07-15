@@ -20,6 +20,7 @@ var app = app || {};
 			this.listenTo(app.areas, 'add', this.addOne);
 			this.listenTo(app.areas, 'reset', this.addAll);
 			this.listenTo(app.areas, 'filter', this.render);
+			this.listenTo(app.areas, 'updateOrder', this.updateOrder);
 
 			$('.new-area').focus(function(){
 				$('.area-hint').removeClass('hidden');
@@ -41,6 +42,19 @@ var app = app || {};
 				this.$areas.hide();
 			}
 			this.selectArea();
+		},
+
+		updateOrder: function(){
+			$('.area-list li').each(function(i){
+				for(var j in app.areas.models){
+					var model = app.areas.models[j];
+					if(model.get('id') === $(this).find('label').data('id')){
+						model.save({
+			      				order: i
+			      });
+					}
+				}
+			});
 		},
 
 		selectArea: function () {
@@ -74,7 +88,7 @@ var app = app || {};
 
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.areas.create(this.newAttributes());
+				app.areas.create(this.newAttributes(),{wait: true});
 				this.$input.val('');
 			}
 		},

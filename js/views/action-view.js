@@ -46,6 +46,7 @@ var app = app || {};
 		},
 
 		select: function() {
+			if(app.dragged){return;}
 			if(app.selectedActionID != this.model.id){
 				this.updateNavigation(this);
 			}else{

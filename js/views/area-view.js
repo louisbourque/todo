@@ -44,7 +44,7 @@ var app = app || {};
 		},
 
 		select: function() {
-			if(app.selectedAreaID != this.model.id){
+			if(!app.dragged && app.selectedAreaID != this.model.id){
 				this.updateNavigation(this);
 				$('.new-project').focus();
 			}

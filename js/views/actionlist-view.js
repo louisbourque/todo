@@ -29,12 +29,62 @@ var app = app || {};
 			this.listenTo(app.actions, 'remove', this.render);
 			this.listenTo(app.actions, 'filter', this.render);
 			this.listenTo(app.actions, 'toggleCompleted', this.render);
+			this.listenTo(app.actions, 'updateOrder', this.updateOrder);
 
 			$('.new-action').focus(function(){
 				$('.action-hint').removeClass('hidden');
 			}).blur(function(){
 				$('.action-hint').addClass('hidden');
 			});
+
+			$( ".area-list" ).sortable({
+				revert: true,
+				start: function(event, ui) {
+          app.dragged = true;
+        },
+        stop: function(event, ui) {
+					app.dragged = false;
+        },
+				update: function( event, ui ) {
+					app.areas.trigger('updateOrder');
+				}
+			});
+			$( ".project-list" ).sortable({
+				revert: true,
+				start: function(event, ui) {
+          app.dragged = true;
+        },
+        stop: function(event, ui) {
+					app.dragged = false;
+        },
+				update: function( event, ui ) {
+					app.projects.trigger('updateOrder');
+				}
+			});
+			var dropped = false;
+			var draggable_sibling;
+
+			$( ".action-list" ).sortable({
+				revert: true,
+				start: function(event, ui) {
+					app.dragged = true;
+            draggable_sibling = $(ui.item).prev();
+        },
+        stop: function(event, ui) {
+					app.dragged = false;
+            if (dropped) {
+                if (draggable_sibling.length == 0)
+                    $('.action-list').prepend(ui.item);
+
+                draggable_sibling.after(ui.item);
+                dropped = false;
+            }
+        },
+				update: function( event, ui ) {
+					app.actions.trigger('updateOrder');
+				}
+			}).disableSelection();
+
 
 			app.actions.fetch({reset: true});
 
@@ -65,6 +115,19 @@ var app = app || {};
 
 			this.filterAll();
 			this.selectAction();
+		},
+
+		updateOrder: function(){
+			$('.action-list li').each(function(i){
+				for(var j in app.actions.models){
+					var model = app.actions.models[j];
+					if(model.get('id') === $(this).find('label').data('id')){
+						model.save({
+										order: i
+						});
+					}
+				}
+			});
 		},
 
 		selectAction: function () {
@@ -122,7 +185,7 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.actions.create(this.newAttributes());
+				app.actions.create(this.newAttributes(),{wait: true});
 				this.$input.val('');
 			}
 		},

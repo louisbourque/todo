@@ -21,6 +21,7 @@ var app = app || {};
 			this.listenTo(app.projects, 'add', this.addOne);
 			this.listenTo(app.projects, 'reset', this.addAll);
 			this.listenTo(app.projects, 'filter', this.render);
+			this.listenTo(app.projects, 'updateOrder', this.updateOrder);
 			this.listenTo(app.actions, 'update', _.debounce(this.updateCompleteCountsAll,0));
 			this.listenTo(app.actions, 'change:completed', _.debounce(this.updateCompleteCountsAll,0));
 
@@ -43,6 +44,19 @@ var app = app || {};
 			}
 			this.filterAll();
 			this.selectProject();
+		},
+
+		updateOrder: function(){
+			$('.project-list li').each(function(i){
+				for(var j in app.projects.models){
+					var model = app.projects.models[j];
+					if(model.get('id') === $(this).find('label').data('id')){
+						model.save({
+										order: i
+						});
+					}
+				}
+			});
 		},
 
 		selectProject: function () {
@@ -75,6 +89,7 @@ var app = app || {};
 		},
 
 		addOne: function (project) {
+			console.log(project);
 			var view = new app.ProjectView({ model: project });
 			this.$list.append(view.render().el);
 		},
@@ -99,7 +114,7 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.projects.create(this.newAttributes());
+				app.projects.create(this.newAttributes(),{wait: true});
 				this.$input.val('');
 			}
 		},
