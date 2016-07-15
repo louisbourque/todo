@@ -54,7 +54,6 @@ var app = app || {};
 		handleKeyPress: function (e) {
 			if (e.which === ESC_KEY) {
 				$(e.target).val(e.target.defaultValue);
-				this.close(e.target);
 			}else if(e.which === ENTER_KEY){
 				if(e.target.nodeName.toUpperCase() === 'INPUT'){
 					$(e.target).blur()
