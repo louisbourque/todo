@@ -75,7 +75,25 @@ var app = app || {};
 			}
 
 			if (trimmedValue) {
-				this.model.save({ title: trimmedValue });
+				if(app.areas.getAreasByTitle(trimmedValue).length || trimmedValue === this.allArea.get('title')){
+					$('#dialog-confirm #dialog-message').html('An area with the selected title already exists. Please use a distinct name.');
+					$( "#dialog-confirm" ).dialog({
+						title:"Area Title already exists",
+						resizable: false,
+						height: "auto",
+						width: 400,
+						modal: true,
+						buttons: {
+							"OK": function() {
+								$( this ).dialog( "close" );
+							}
+						}
+					});
+					return;
+				}else{
+					this.model.save({ title: trimmedValue });
+				}
+
 			} else {
 				this.clear();
 			}
