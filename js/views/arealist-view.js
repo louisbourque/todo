@@ -16,6 +16,10 @@ var app = app || {};
 			this.$input = this.$('.new-area');
 			this.$areas = this.$('.areas');
 			this.$list = $('.area-list');
+			this.allArea = new app.Area({
+				title:"(Show All)",
+				id:"area-all"
+			});
 
 			this.listenTo(app.areas, 'add', this.addOne);
 			this.listenTo(app.areas, 'reset', this.addAll);
@@ -96,6 +100,11 @@ var app = app || {};
 					area.select(true);
 				}
 			});
+			if(app.AreaFilter && app.AreaFilter === this.allArea.get('title')){
+				app.selectedAreaID = this.allArea.id;
+				this.allArea.set("selected",true);
+				this.allArea.trigger("change");
+			}
 			this.resetDroppable();
 		},
 
@@ -106,6 +115,7 @@ var app = app || {};
 
 		addAll: function () {
 			this.$list.html('');
+			this.addOne(this.allArea);
 			app.areas.each(this.addOne, this);
 		},
 

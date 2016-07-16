@@ -20,6 +20,30 @@ var app = app || {};
 		remaining: function () {
 			return this.where({completed: false,project: app.selectedProjectID});
 		},
+		completedBySelectedArea: function () {
+			if(app.selectedAreaID == "area-all"){
+				return this.where({completed: true});
+			}
+			var arr = [];
+			var projectsInSelectedArea = app.projects.projectsByArea(app.selectedAreaID);
+			var actions = this;
+			_.each(projectsInSelectedArea,function(project){
+				arr = arr.concat( actions.where({completed: true,project: project.id}))
+			});
+			return arr;
+		},
+		remainingBySelectedArea: function () {
+			if(app.selectedAreaID == "area-all"){
+				return this.where({completed: false});
+			}
+			var arr = [];
+			var projectsInSelectedArea = app.projects.projectsByArea(app.selectedAreaID);
+			var actions = this;
+			_.each(projectsInSelectedArea,function(project){
+				arr = arr.concat( actions.where({completed: false,project: project.id}))
+			});
+			return arr;
+		},
 		completedByProject: function (projectID) {
 			return this.where({completed: true,project: projectID});
 		},

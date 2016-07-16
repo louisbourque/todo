@@ -22,6 +22,9 @@ var app = app || {};
 				completed: !this.get('completed')
 			});
 			app.actions.trigger('toggleCompleted');
-}
+		},
+		getArea: function(){
+			return app.projects.get(this.get('project')).get("area");
+		}
 	});
 })();

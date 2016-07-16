@@ -40,6 +40,9 @@ var app = app || {};
 			if(app.selectedAreaID == this.model.id){
 				this.$el.addClass('selected');
 			}
+			if(this.model.id == "area-all"){
+				this.$el.addClass("area-all");
+			}
 
 			return this;
 		},
@@ -115,7 +118,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(area){
-				app.AreaRouter.navigate(encodeURIComponent(area.model.get('title'))+'/f'+app.ActionStatusFilter, {trigger: true});
+				app.AreaRouter.navigate(encodeURIComponent(area.model.get('title'))+(app.ProjectFilter ? '/p'+encodeURIComponent(app.ProjectFilter) : '' )+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 	});
 })(jQuery);

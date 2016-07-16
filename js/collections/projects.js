@@ -13,6 +13,9 @@ var app = app || {};
 		},
 		selected: function () {
 					return this.where({selected: true});
+		},
+		projectsByArea: function(area){
+			return this.where({area: area});
 		}
 	});
 

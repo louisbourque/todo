@@ -237,6 +237,10 @@ input[type="checkbox"] {
 .item-list li.selected .destroy{
 	display: block;
 }
+.item-list li.project-all .destroy,
+.item-list li.area-all .destroy{
+	display: none;
+}
 .action-details .destroy{
 	display: block;
 	position: relative;

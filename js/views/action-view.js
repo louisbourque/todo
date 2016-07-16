@@ -64,7 +64,9 @@ var app = app || {};
 		},
 
 		isHidden: function () {
-			return !!app.selectedProjectID && this.model.get('project') != app.selectedProjectID
+			return !!app.selectedProjectID
+			&& this.model.get('project') != app.selectedProjectID
+			&& (app.selectedProjectID != "project-all" || (app.selectedAreaID != "area-all" && this.model.getArea() != app.selectedAreaID))
 			|| (app.ActionStatusFilter != 'all' && (this.model.get('completed') && app.ActionStatusFilter === 'active')
 					|| (!this.model.get('completed') && app.ActionStatusFilter === 'completed'));
 		},

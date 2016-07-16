@@ -17,11 +17,16 @@ var app = app || {};
 			this.$footer = this.$('.footer');
 			this.$list = $('.project-list');
 			this.$el.removeClass('hidden');
+			this.allProject = new app.Project({
+				title:"(Show All)",
+				id:"project-all"
+			});
 
 			this.listenTo(app.projects, 'add', this.addOne);
 			this.listenTo(app.projects, 'reset', this.addAll);
 			this.listenTo(app.projects, 'filter', this.render);
 			this.listenTo(app.projects, 'updateOrder', this.updateOrder);
+			this.listenTo(app.actions, 'reset', this.updateCompleteCountsAllProject);//set stats on All Projects item
 			this.listenTo(app.actions, 'update', _.debounce(this.updateCompleteCountsAll,0));
 			this.listenTo(app.actions, 'change:completed', _.debounce(this.updateCompleteCountsAll,0));
 
@@ -57,6 +62,7 @@ var app = app || {};
 			}
 			this.filterAll();
 			this.selectProject();
+			this.updateCompleteCountsAllProject();
 		},
 
 		resetDroppable: function(){
@@ -94,21 +100,34 @@ var app = app || {};
 			app.selectedProjectID = '';
 			app.projects.each(function(project){
 				project.select(false);
-				if(app.ProjectFilter && project.get('title').toLowerCase() === app.ProjectFilter.toLowerCase()){
+				if(app.ProjectFilter && project.get('title').toLowerCase() === app.ProjectFilter.toLowerCase()
+					&& (project.get('area') === app.selectedAreaID || app.selectedAreaID === "area-all")){
 					app.selectedProjectID = project.id;
 					project.select(true);
 				}
 			});
+			if(app.ProjectFilter && app.ProjectFilter === this.allProject.get('title')){
+				app.selectedProjectID = this.allProject.id;
+				this.allProject.set("selected",true);
+				this.allProject.trigger("change");
+			}
 			this.resetDroppable();
 		},
 
 		updateCompleteCountsAll: function(){
 			app.projects.each(this.updateCompleteCountsOne, this);
+			this.updateCompleteCountsAllProject();
 		},
 
 		updateCompleteCountsOne: function(project){
 			project.save({completedCount:app.actions.completedByProject(project.id).length,
 										remainingCount:app.actions.remainingByProject(project.id).length});
+		},
+
+		updateCompleteCountsAllProject: function(){
+			this.allProject.set({completedCount:app.actions.completedBySelectedArea().length,
+														remainingCount:app.actions.remainingBySelectedArea().length});
+			this.allProject.trigger("change");
 		},
 
 		filterOne: function (project) {
@@ -124,10 +143,9 @@ var app = app || {};
 			this.$list.append(view.render().el);
 		},
 
-		// Add all items in the **Todos** collection at once.
 		addAll: function () {
 			this.$list.html('');
-			//TODO: get selected area, call .each on
+			this.addOne(this.allProject);
 			app.projects.each(this.addOne, this);
 		},
 

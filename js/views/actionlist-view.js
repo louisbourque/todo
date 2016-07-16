@@ -108,7 +108,8 @@ var app = app || {};
 			app.selectedActionID = '';
 			app.actions.each(function(action){
 				action.select(false);
-				if(app.ActionFilter && action.get('title').toLowerCase() === app.ActionFilter.toLowerCase()){
+				if(app.selectedProjectID && app.ActionFilter && action.get('title').toLowerCase() === app.ActionFilter.toLowerCase()
+				&& (action.get('project') === app.selectedProjectID || app.selectedProjectID === "project-all")){
 					app.selectedActionID = action.id;
 					action.select(true);
 				}

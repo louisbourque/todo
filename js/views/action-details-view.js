@@ -27,9 +27,9 @@ var app = app || {};
 		},
 
 		render: function () {
-			var selectedActionArr = app.actions.selected();
-			if (selectedActionArr.length > 0) {
-				this.selectedAction = selectedActionArr[0];
+
+			if (app.selectedProjectID && app.selectedActionID) {
+				this.selectedAction = app.actions.get(app.selectedActionID);
 				this.$el.show();
 
 				this.$detailsDiv.html(this.template({
