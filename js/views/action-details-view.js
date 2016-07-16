@@ -46,9 +46,26 @@ var app = app || {};
 		},
 
 		clear: function () {
-			if(confirm("You are about to permanently delete this action. Continue?")){
-				this.selectedAction.destroy();
-			}
+			var model = this.selectedAction;
+			$( function() {
+				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete this action?');
+				$( "#dialog-confirm" ).dialog({
+					title:"Delete Action",
+					resizable: false,
+					height: "auto",
+					width: 400,
+					modal: true,
+					buttons: {
+						"Delete Action": function() {
+							model.destroy();
+							$( this ).dialog( "close" );
+						},
+						Cancel: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
+			});
 		},
 
 		handleKeyPress: function (e) {
