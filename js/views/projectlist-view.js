@@ -162,8 +162,24 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.projects.create(this.newAttributes(),{wait: true});
-				this.$input.val('');
+				if(app.selectedAreaID === "" || app.selectedAreaID === "area-all"){
+					$('#dialog-confirm #dialog-message').html('Please select the area where this project should be created.');
+					$( "#dialog-confirm" ).dialog({
+						title:"Area must be selected",
+						resizable: false,
+						height: "auto",
+						width: 400,
+						modal: true,
+						buttons: {
+							"OK": function() {
+								$( this ).dialog( "close" );
+							}
+						}
+					});
+				}else{
+					app.projects.create(this.newAttributes(),{wait: true});
+					this.$input.val('');
+				}
 			}
 		},
 
