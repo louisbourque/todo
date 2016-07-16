@@ -14,6 +14,9 @@ var app = app || {};
 
 		selected: function () {
 					return this.where({selected: true});
+		},
+		getAreasByTitle: function(title){
+			return this.where({title: title});
 		}
 	});
 

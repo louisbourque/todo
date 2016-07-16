@@ -176,6 +176,20 @@ var app = app || {};
 							}
 						}
 					});
+				}else if(app.projects.getProjectsByTitle(this.$input.val()).length || this.$input.val() === this.allProject.get('title')){
+					$('#dialog-confirm #dialog-message').html('A project with the selected title already exists. Please use a distinct name.');
+					$( "#dialog-confirm" ).dialog({
+						title:"Project Title already exists",
+						resizable: false,
+						height: "auto",
+						width: 400,
+						modal: true,
+						buttons: {
+							"OK": function() {
+								$( this ).dialog( "close" );
+							}
+						}
+					});
 				}else{
 					app.projects.create(this.newAttributes(),{wait: true});
 					this.$input.val('');

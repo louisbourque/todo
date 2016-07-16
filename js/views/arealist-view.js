@@ -128,8 +128,24 @@ var app = app || {};
 
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.areas.create(this.newAttributes(),{wait: true});
-				this.$input.val('');
+				if(app.areas.getAreasByTitle(this.$input.val()).length || this.$input.val() === this.allArea.get('title')){
+					$('#dialog-confirm #dialog-message').html('An area with the selected title already exists. Please use a distinct name.');
+					$( "#dialog-confirm" ).dialog({
+						title:"Area Title already exists",
+						resizable: false,
+						height: "auto",
+						width: 400,
+						modal: true,
+						buttons: {
+							"OK": function() {
+								$( this ).dialog( "close" );
+							}
+						}
+					});
+				}else{
+					app.areas.create(this.newAttributes(),{wait: true});
+					this.$input.val('');
+				}
 			}
 		},
 
