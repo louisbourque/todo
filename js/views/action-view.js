@@ -13,8 +13,6 @@ var app = app || {};
 			'click label': 'select',
 			'click .destroy': 'clear',
 			'click .toggle': 'toggleCompleted',
-			'keydown .edit': 'handleKeyPress',
-			'blur .edit': 'close'
 		},
 
 		initialize: function () {
@@ -76,33 +74,6 @@ var app = app || {};
 			this.$input.focus();
 		},
 
-		close: function () {
-			var value = this.$input.val();
-			var trimmedValue = value.trim();
-
-			if (!this.$el.hasClass('editing')) {
-				return;
-			}
-
-			if (trimmedValue) {
-				this.model.save({ title: trimmedValue });
-			} else {
-				this.clear();
-			}
-
-			this.$el.removeClass('editing');
-			this.updateNavigation(this);
-		},
-
-
-		handleKeyPress: function (e) {
-			if (e.which === ESC_KEY) {
-				this.$el.removeClass('editing');
-				this.$input.val(this.model.get('title'));
-			}else if (e.which === ENTER_KEY) {
-				this.close();
-			}
-		},
 
 		clear: function () {
 			var model = this.model;
