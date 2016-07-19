@@ -33,9 +33,11 @@ var app = app || {};
 				this.selectedAction = app.actions.get(app.selectedActionID);
 					if(this.selectedAction.get('visible') && (app.selectedProjectID === 'project-all' || this.selectedAction.get('project') === app.selectedProjectID)){
 					this.$el.show();
-
+					var project = app.projects.get(this.selectedAction.get('project'));
 					this.$detailsDiv.html(this.template({
-										action: this.selectedAction
+										action: this.selectedAction,
+										area: app.areas.get(project.get('area')).get('title'),
+										project:project.get('title')
 					}));
 				} else {
 					this.$el.hide();

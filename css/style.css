@@ -81,7 +81,7 @@ input[type="checkbox"] {
 .edit {
 	position: relative;
 	margin: 0;
-	width: 280px;
+	width:100%;
 	font-size: 120%;
 	font-family: inherit;
 	font-weight: inherit;
@@ -252,10 +252,6 @@ input[type="checkbox"] {
 }
 label[for="action-note"]{
 	margin:5px;
-}
-.action-details-div .edit{
-	margin:1%;
-	width:98%;
 }
 
 .item-list li .modify {
