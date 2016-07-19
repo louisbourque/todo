@@ -68,7 +68,7 @@ var app = app || {};
 			var completed = app.actions.completed().length;
 			var remaining = app.actions.remaining().length;
 
-			if (app.selectedProjectID && (app.selectedProjectID == 'project-all' || app.projects.get(app.selectedProjectID).get('visible'))) {
+			if (app.selectedAreaID && app.selectedProjectID && (app.selectedProjectID == 'project-all' || app.projects.get(app.selectedProjectID).get('visible'))) {
 				this.$el.show();
 
 				this.$statusfilter.html(this.statusTemplate({

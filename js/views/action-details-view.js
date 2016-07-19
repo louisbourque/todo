@@ -28,7 +28,7 @@ var app = app || {};
 
 		render: function () {
 
-			if (app.selectedProjectID && app.selectedActionID
+			if (app.selectedAreaID && app.selectedProjectID && app.selectedActionID
 				&& (app.selectedProjectID === 'project-all' || app.projects.get(app.selectedProjectID).get('visible'))) {
 				this.selectedAction = app.actions.get(app.selectedActionID);
 					if(this.selectedAction.get('visible') && (app.selectedProjectID === 'project-all' || this.selectedAction.get('project') === app.selectedProjectID)){
