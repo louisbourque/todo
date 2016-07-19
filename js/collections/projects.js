@@ -16,9 +16,6 @@ var app = app || {};
 		},
 		projectsByArea: function(area){
 			return this.where({area: area});
-		},
-		getProjectsByTitle: function(title){
-			return this.where({title: title});
 		}
 	});
 

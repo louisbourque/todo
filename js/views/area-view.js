@@ -75,25 +75,7 @@ var app = app || {};
 			}
 
 			if (trimmedValue) {
-				if(app.areas.getAreasByTitle(trimmedValue).length || trimmedValue === this.allArea.get('title')){
-					$('#dialog-confirm #dialog-message').html('An area with the selected title already exists. Please use a distinct name.');
-					$( "#dialog-confirm" ).dialog({
-						title:"Area Title already exists",
-						resizable: false,
-						height: "auto",
-						width: 400,
-						modal: true,
-						buttons: {
-							"OK": function() {
-								$( this ).dialog( "close" );
-							}
-						}
-					});
-					return;
-				}else{
-					this.model.save({ title: trimmedValue });
-				}
-
+				this.model.save({ title: trimmedValue });
 			} else {
 				this.clear();
 			}
@@ -136,7 +118,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(area){
-				app.AreaRouter.navigate(encodeURIComponent(area.model.get('title'))+(app.ProjectFilter ? '/p'+encodeURIComponent(app.ProjectFilter) : '' )+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/f'+app.ActionStatusFilter, {trigger: true});
+				app.AreaRouter.navigate(area.model.id+(app.selectedProjectID ? '/p'+app.selectedProjectID : '' )+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 	});
 })(jQuery);

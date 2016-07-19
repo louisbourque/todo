@@ -19,7 +19,8 @@ var app = app || {};
 			this.$el.removeClass('hidden');
 			this.allProject = new app.Project({
 				title:"(Show All)",
-				id:"project-all"
+				id:"project-all",
+				visible:true
 			});
 
 			this.listenTo(app.projects, 'add', this.addOne);
@@ -97,19 +98,22 @@ var app = app || {};
 
 		selectProject: function () {
 			$('.projects .selected').removeClass('selected');
-			app.selectedProjectID = '';
 			app.projects.each(function(project){
 				project.select(false);
-				if(app.ProjectFilter && project.get('title').toLowerCase() === app.ProjectFilter.toLowerCase()
-					&& (project.get('area') === app.selectedAreaID || app.selectedAreaID === "area-all")){
-					app.selectedProjectID = project.id;
-					project.select(true);
-				}
 			});
-			if(app.ProjectFilter && app.ProjectFilter === this.allProject.get('title')){
-				app.selectedProjectID = this.allProject.id;
-				this.allProject.set("selected",true);
-				this.allProject.trigger("change");
+			if(app.selectedProjectID){
+				if(app.selectedProjectID === this.allProject.id){
+					this.allProject.set("selected",true);
+					this.allProject.trigger("change");
+				}else{
+					var selectedProject = app.projects.get(app.selectedProjectID);
+					if(selectedProject){
+						selectedProject.select(true);
+					}else{
+						//selected project was deleted
+						app.selectedProjectID = '';
+					}
+				}
 			}
 			this.resetDroppable();
 		},
@@ -176,22 +180,9 @@ var app = app || {};
 							}
 						}
 					});
-				}else if(app.projects.getProjectsByTitle(this.$input.val()).length || this.$input.val() === this.allProject.get('title')){
-					$('#dialog-confirm #dialog-message').html('A project with the selected title already exists. Please use a distinct name.');
-					$( "#dialog-confirm" ).dialog({
-						title:"Project Title already exists",
-						resizable: false,
-						height: "auto",
-						width: 400,
-						modal: true,
-						buttons: {
-							"OK": function() {
-								$( this ).dialog( "close" );
-							}
-						}
-					});
 				}else{
 					app.projects.create(this.newAttributes(),{wait: true});
+					this.filterAll();
 					this.$input.val('');
 				}
 			}

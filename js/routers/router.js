@@ -11,9 +11,9 @@ var app = app || {};
 		},
 
 		setFilter: function (area,project,action,filter) {
-			app.AreaFilter = area || '';
-			app.ProjectFilter = project || '';
-			app.ActionFilter = action || '';
+			app.selectedAreaID = area || '';
+			app.selectedProjectID = project || '';
+			app.selectedActionID = action || '';
 			app.ActionStatusFilter = filter || 'all';
 
 			app.areas.trigger('filter');

@@ -35,6 +35,7 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
+			this.$el.toggleClass('hidden', !this.model.get('visible'));
 			this.$input = this.$('.edit');
 			this.$el.addClass('draggable-action');
 			if(app.selectedActionID == this.model.id){
@@ -54,7 +55,7 @@ var app = app || {};
 		},
 
 		toggleVisible: function () {
-					this.$el.toggleClass('hidden', this.isHidden());
+			this.model.set('visible',!this.isHidden());
 		},
 
 		toggleCompleted: function () {
@@ -99,11 +100,11 @@ var app = app || {};
 		},
 
 		updateNavigation: function(action){
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+'/a'+encodeURIComponent(action.model.get('title'))+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(app.selectedAreaID+'/p'+app.selectedProjectID+'/a'+action.model.id+'/f'+app.ActionStatusFilter, {trigger: true});
 		},
 
 		updateNavigationNoAction: function(action){
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(app.selectedAreaID+'/p'+app.selectedProjectID+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 

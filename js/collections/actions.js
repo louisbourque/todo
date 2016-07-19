@@ -49,9 +49,6 @@ var app = app || {};
 		},
 		remainingByProject: function (projectID) {
 			return this.where({completed: false,project: projectID});
-		},
-		getActionsByTitle: function(title){
-			return this.where({title: title});
 		}
 	});
 

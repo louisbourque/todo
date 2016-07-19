@@ -92,18 +92,21 @@ var app = app || {};
 
 		selectArea: function () {
 			$('.areas .selected').removeClass('selected');
-			app.selectedAreaID = '';
 			app.areas.each(function(area){
 				area.select(false);
-				if(app.AreaFilter && area.get('title').toLowerCase() === app.AreaFilter.toLowerCase()){
-					app.selectedAreaID = area.id;
-					area.select(true);
-				}
 			});
-			if(app.AreaFilter && app.AreaFilter === this.allArea.get('title')){
-				app.selectedAreaID = this.allArea.id;
-				this.allArea.set("selected",true);
-				this.allArea.trigger("change");
+			if(app.selectedAreaID){
+				if(app.selectedAreaID === this.allArea.id){
+					this.allArea.set("selected",true);
+					this.allArea.trigger("change");
+				}else{
+					var selectedArea = app.areas.get(app.selectedAreaID);
+					if(selectedArea){
+						selectedArea.select(true);
+					}else{
+						app.selectedAreaID = '';
+					}
+				}
 			}
 			this.resetDroppable();
 		},
@@ -128,24 +131,8 @@ var app = app || {};
 
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				if(app.areas.getAreasByTitle(this.$input.val()).length || this.$input.val() === this.allArea.get('title')){
-					$('#dialog-confirm #dialog-message').html('An area with the selected title already exists. Please use a distinct name.');
-					$( "#dialog-confirm" ).dialog({
-						title:"Area Title already exists",
-						resizable: false,
-						height: "auto",
-						width: 400,
-						modal: true,
-						buttons: {
-							"OK": function() {
-								$( this ).dialog( "close" );
-							}
-						}
-					});
-				}else{
-					app.areas.create(this.newAttributes(),{wait: true});
-					this.$input.val('');
-				}
+				app.areas.create(this.newAttributes(),{wait: true});
+				this.$input.val('');
 			}
 		},
 

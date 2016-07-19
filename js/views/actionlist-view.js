@@ -68,7 +68,7 @@ var app = app || {};
 			var completed = app.actions.completed().length;
 			var remaining = app.actions.remaining().length;
 
-			if (app.selectedProjectID) {
+			if (app.selectedProjectID && (app.selectedProjectID == 'project-all' || app.projects.get(app.selectedProjectID).get('visible'))) {
 				this.$el.show();
 
 				this.$statusfilter.html(this.statusTemplate({
@@ -84,7 +84,7 @@ var app = app || {};
 			} else {
 				this.$el.hide();
 			}
-			this.allCheckbox.checked = !remaining;
+			this.allCheckbox.checked = !remaining && completed;
 
 			this.filterAll();
 			this.selectAction();
@@ -105,15 +105,17 @@ var app = app || {};
 
 		selectAction: function () {
 			$('.actions .selected').removeClass('selected');
-			app.selectedActionID = '';
 			app.actions.each(function(action){
 				action.select(false);
-				if(app.selectedProjectID && app.ActionFilter && action.get('title').toLowerCase() === app.ActionFilter.toLowerCase()
-				&& (action.get('project') === app.selectedProjectID || app.selectedProjectID === "project-all")){
-					app.selectedActionID = action.id;
-					action.select(true);
-				}
 			});
+			if(app.selectedActionID){
+				var selectedAction = app.actions.get(app.selectedActionID);
+				if(selectedAction){
+					selectedAction.select(true);
+				}else{
+					app.selectedActionID = '';
+				}
+			}
 			app.actions.trigger('actionSeletected');
 		},
 
@@ -126,13 +128,13 @@ var app = app || {};
 		},
 
 		setFilterAll: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/fall', {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.selectedAreaID)+'/p'+app.selectedProjectID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/fall', {trigger: true});
 		},
 		setFilterActive: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/factive', {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.selectedAreaID)+'/p'+app.selectedProjectID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/factive', {trigger: true});
 		},
 		setFilterCompleted: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/fcompleted', {trigger: true});
+			app.AreaRouter.navigate(encodeURIComponent(app.selectedAreaID)+'/p'+app.selectedProjectID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/fcompleted', {trigger: true});
 		},
 
 		addOne: function (action) {
@@ -187,22 +189,9 @@ var app = app || {};
 							}
 						}
 					});
-				}else if(app.actions.getActionsByTitle(this.$input.val()).length){
-					$('#dialog-confirm #dialog-message').html('An action with the selected title already exists. Please use a distinct name.');
-					$( "#dialog-confirm" ).dialog({
-						title:"Action Title already exists",
-						resizable: false,
-						height: "auto",
-						width: 400,
-						modal: true,
-						buttons: {
-							"OK": function() {
-								$( this ).dialog( "close" );
-							}
-						}
-					});
 				}else{
 					app.actions.create(this.newAttributes(),{wait: true});
+					this.filterAll();
 					this.$input.val('');
 				}
 			}

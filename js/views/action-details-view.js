@@ -28,14 +28,19 @@ var app = app || {};
 
 		render: function () {
 
-			if (app.selectedProjectID && app.selectedActionID) {
+			if (app.selectedProjectID && app.selectedActionID
+				&& (app.selectedProjectID === 'project-all' || app.projects.get(app.selectedProjectID).get('visible'))) {
 				this.selectedAction = app.actions.get(app.selectedActionID);
-				this.$el.show();
+					if(this.selectedAction.get('visible') && (app.selectedProjectID === 'project-all' || this.selectedAction.get('project') === app.selectedProjectID)){
+					this.$el.show();
 
-				this.$detailsDiv.html(this.template({
-									action: this.selectedAction
-				}));
-			} else {
+					this.$detailsDiv.html(this.template({
+										action: this.selectedAction
+					}));
+				} else {
+					this.$el.hide();
+				}
+			}else {
 				this.$el.hide();
 			}
 			this.$title = this.$('.action-details-div #action-title');
@@ -94,7 +99,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(){
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(app.ProjectFilter)+'/a'+encodeURIComponent(this.selectedAction.get('title'))+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(app.selectedAreaID+'/p'+app.selectedProjectID+'/a'+this.selectedAction.id+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 	});

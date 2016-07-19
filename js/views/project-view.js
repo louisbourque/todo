@@ -38,6 +38,7 @@ var app = app || {};
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$input = this.$('.edit');
 			this.$el.addClass('droppable-project draggable-project');
+			this.$el.toggleClass('hidden', !this.model.get('visible'));
 			if(app.selectedProjectID == this.model.id){
 				this.$el.addClass('selected');
 			}
@@ -57,7 +58,7 @@ var app = app || {};
 		},
 
 		toggleVisible: function () {
-					this.$el.toggleClass('hidden', this.isHidden());
+			this.model.set('visible',!this.isHidden());
 		},
 
 		isHidden: function () {
@@ -83,24 +84,7 @@ var app = app || {};
 			}
 
 			if (trimmedValue) {
-				if(app.projects.getProjectssByTitle(trimmedValue).length || trimmedValue === this.allProject.get('title')){
-					$('#dialog-confirm #dialog-message').html('A project with the selected title already exists. Please use a distinct name.');
-					$( "#dialog-confirm" ).dialog({
-						title:"Project Title already exists",
-						resizable: false,
-						height: "auto",
-						width: 400,
-						modal: true,
-						buttons: {
-							"OK": function() {
-								$( this ).dialog( "close" );
-							}
-						}
-					});
-					return;
-				}else{
-					this.model.save({ title: trimmedValue });
-				}
+				this.model.save({ title: trimmedValue });
 			} else {
 				this.clear();
 			}
@@ -143,7 +127,7 @@ var app = app || {};
 		},
 
 		updateNavigation: function(project){
-			app.AreaRouter.navigate(encodeURIComponent(app.AreaFilter)+'/p'+encodeURIComponent(project.model.get('title'))+(app.ActionFilter ? '/a'+encodeURIComponent(app.ActionFilter) : '' )+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(app.selectedAreaID+'/p'+project.model.id+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 
