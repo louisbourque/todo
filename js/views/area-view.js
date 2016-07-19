@@ -97,7 +97,13 @@ var app = app || {};
 		clear: function () {
 			var model = this.model;
 			$( function() {
-				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete this area and all associated projects/actions?');
+				var projectsInArea = app.projects.projectsByArea(model.id);
+				var actionsInArea = [];
+				var actions = this;
+				_.each(projectsInArea,function(project){
+					actionsInArea = actionsInArea.concat( app.actions.where({project: project.id}))
+				});
+				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete this area and '+projectsInArea.length+' associated project'+(projectsInArea.length == 1 ? '' : 's')+', '+actionsInArea.length+' action'+(actionsInArea.length == 1 ? '' : 's')+'?');
 				$( "#dialog-confirm" ).dialog({
 					title:"Delete Area",
 					resizable: false,
@@ -106,6 +112,8 @@ var app = app || {};
 					modal: true,
 					buttons: {
 						"Delete Area": function() {
+							_.invoke(actionsInArea, 'destroy');
+							_.invoke(projectsInArea, 'destroy');
 							model.destroy();
 							$( this ).dialog( "close" );
 						},

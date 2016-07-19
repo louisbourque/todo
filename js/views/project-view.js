@@ -106,7 +106,8 @@ var app = app || {};
 		clear: function () {
 			var model = this.model;
 			$( function() {
-				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete this project and all associated actions?');
+				var actionsInProject = app.actions.actionsByProject(model.id);
+				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete this project and '+actionsInProject.length+' associated action'+(actionsInProject.length == 1 ? '' : 's')+'?');
 				$( "#dialog-confirm" ).dialog({
 					title:"Delete Project",
 					resizable: false,
@@ -115,6 +116,7 @@ var app = app || {};
 					modal: true,
 					buttons: {
 						"Delete Project": function() {
+							_.invoke(actionsInProject, 'destroy');
 							model.destroy();
 							$( this ).dialog( "close" );
 						},

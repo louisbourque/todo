@@ -49,7 +49,10 @@ var app = app || {};
 		},
 		remainingByProject: function (projectID) {
 			return this.where({completed: false,project: projectID});
-		}
+		},
+		actionsByProject: function (projectID) {
+			return this.where({project: projectID});
+		},
 	});
 
 	app.actions = new Actions();
