@@ -133,6 +133,7 @@ var app = app || {};
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
 				app.areas.create(this.newAttributes(),{wait: true});
 				this.$input.val('');
+				this.resetDroppable();
 			}
 		},
 

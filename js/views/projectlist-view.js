@@ -183,6 +183,7 @@ var app = app || {};
 				}else{
 					app.projects.create(this.newAttributes(),{wait: true});
 					this.filterAll();
+					this.resetDroppable();
 					this.$input.val('');
 				}
 			}
