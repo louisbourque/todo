@@ -115,7 +115,7 @@ input[type="checkbox"] {
 .projects {
 	float: left;
 	position: relative;
-	z-index: 2;
+	z-index: 3;
 	border-top: 1px solid #e6e6e6;
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
@@ -125,7 +125,7 @@ input[type="checkbox"] {
 .actions {
 	float: left;
 	position: relative;
-	z-index: 2;
+	z-index: 4;
 	border-top: 1px solid #e6e6e6;
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
@@ -136,7 +136,7 @@ input[type="checkbox"] {
 .action-details {
 	float: left;
 	position: relative;
-	z-index: 2;
+	z-index: 5;
 	border-top: 1px solid #e6e6e6;
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
@@ -185,16 +185,6 @@ input[type="checkbox"] {
 	bottom: 0;
 	margin: auto 0;
 	border: none; /* Mobile Safari */
-	-webkit-appearance: none;
-	appearance: none;
-}
-
-.item-list li .toggle:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
-}
-
-.item-list li .toggle:checked:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
 
 .item-list li label {
@@ -398,5 +388,54 @@ label[for="toggle-all"]{
 
 	.todo-list li .toggle {
 		height: 40px;
+	}
+}
+
+@media all and (max-width: 1260px) and (min-width: 1165px) {
+	.action-details {
+		width: 300px;
+	}
+}
+
+@media all and (max-width: 1164px) and (min-width: 450px) {
+	.areas {
+		width: 400px;
+	}
+	.projects {
+		width: 400px;
+	}
+	.actions {
+		clear: left;
+		width: 400px;
+		border-left:none;
+	}
+	.action-details {
+		width: 400px;
+	}
+}
+
+@media all and (max-width: 819px) {
+	.projects {
+		clear: left;
+	}
+	.action-details {
+		clear: left;
+	}
+}
+
+@media all and (max-width: 449px) {
+	.areas {
+		width: 280px;
+	}
+	.projects {
+		width: 280px;
+	}
+	.actions {
+		clear: left;
+		width: 280px;
+		border-left:none;
+	}
+	.action-details {
+		width: 280px;
 	}
 }
