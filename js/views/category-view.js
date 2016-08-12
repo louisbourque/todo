@@ -4,10 +4,10 @@ var app = app || {};
 (function ($) {
 	'use strict';
 
-	app.ProjectView = Backbone.View.extend({
+	app.CategoryView = Backbone.View.extend({
 		tagName:  'li',
 
-		template: _.template($('#item-template').html()),
+		template: _.template($('#category-template').html()),
 
 		events: {
 			'click label': 'select',
@@ -37,13 +37,12 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$input = this.$('.edit');
-			this.$el.addClass('droppable-project draggable-project');
-			this.$el.toggleClass('hidden', !this.model.get('visible'));
-			if(app.selectedProjectID == this.model.id){
+			this.$el.addClass('droppable-category draggable-category');
+			if(app.selectedCategoryID == this.model.id){
 				this.$el.addClass('selected');
 			}
-			if(this.model.id == "project-all"){
-				this.$el.addClass("project-all");
+			if(this.model.id == "category-all"){
+				this.$el.addClass("category-all");
 			}
 			return this;
 		},
@@ -51,19 +50,12 @@ var app = app || {};
 		select: function() {
 			//workaround - clicking a label doesn't trigger blur and input stays visible
 			$('.editing').removeClass('editing');
-			if(!app.dragged && app.selectedProjectID != this.model.id){
+			if(!app.dragged && app.selectedCategoryID != this.model.id){
 				this.updateNavigation(this);
 				$('.new-action').focus();
 			}
 		},
 
-		toggleVisible: function () {
-			this.model.set('visible',!this.isHidden());
-		},
-
-		isHidden: function () {
-			return !!app.selectedAreaID && app.selectedAreaID != "area-all" && this.model.get('area') != app.selectedAreaID;
-		},
 
 		edit: function () {
 			this.$el.addClass('editing');
@@ -106,17 +98,17 @@ var app = app || {};
 		clear: function () {
 			var model = this.model;
 			$( function() {
-				var actionsInProject = app.actions.actionsByProject(model.id);
-				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete this project and '+actionsInProject.length+' associated action'+(actionsInProject.length == 1 ? '' : 's')+'?');
+				var actionsInCategory = app.actions.actionsByCategory(model.id);
+				$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete this category and '+actionsInCategory.length+' associated action'+(actionsInCategory.length == 1 ? '' : 's')+'?');
 				$( "#dialog-confirm" ).dialog({
-					title:"Delete Project",
+					title:"Delete Category",
 					resizable: false,
 					height: "auto",
 					width: 400,
 					modal: true,
 					buttons: {
-						"Delete Project": function() {
-							_.invoke(actionsInProject, 'destroy');
+						"Delete Category": function() {
+							_.invoke(actionsInCategory, 'destroy');
 							model.destroy();
 							$( this ).dialog( "close" );
 						},
@@ -128,8 +120,8 @@ var app = app || {};
 			});
 		},
 
-		updateNavigation: function(project){
-			app.AreaRouter.navigate(app.selectedAreaID+'/p'+project.model.id+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/f'+app.ActionStatusFilter, {trigger: true});
+		updateNavigation: function(category){
+			app.AreaRouter.navigate(category.model.id+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 

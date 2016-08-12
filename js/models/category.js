@@ -4,10 +4,9 @@ var app = app || {};
 (function () {
 	'use strict';
 
-	app.Project = Backbone.Model.extend({
+	app.Category = Backbone.Model.extend({
 		defaults: {
 			title: '',
-			area: '',
 			selected: false,
 			completedCount: 0,
 			remainingCount: 0,

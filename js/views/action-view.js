@@ -63,9 +63,9 @@ var app = app || {};
 		},
 
 		isHidden: function () {
-			return !!app.selectedProjectID
-			&& this.model.get('project') != app.selectedProjectID
-			&& (app.selectedProjectID != "project-all" || (app.selectedAreaID != "area-all" && this.model.getArea() != app.selectedAreaID))
+			return !!app.selectedCategoryID
+			&& this.model.get('category') != app.selectedCategoryID
+			&& app.selectedCategoryID != "category-all" 
 			|| (app.ActionStatusFilter != 'all' && (this.model.get('completed') && app.ActionStatusFilter === 'active')
 					|| (!this.model.get('completed') && app.ActionStatusFilter === 'completed'));
 		},
@@ -100,11 +100,11 @@ var app = app || {};
 		},
 
 		updateNavigation: function(action){
-			app.AreaRouter.navigate(app.selectedAreaID+'/p'+app.selectedProjectID+'/a'+action.model.id+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(app.selectedCategoryID+'/a'+action.model.id+'/f'+app.ActionStatusFilter, {trigger: true});
 		},
 
 		updateNavigationNoAction: function(action){
-			app.AreaRouter.navigate(app.selectedAreaID+'/p'+app.selectedProjectID+'/f'+app.ActionStatusFilter, {trigger: true});
+			app.AreaRouter.navigate(app.selectedCategoryID+'/f'+app.ActionStatusFilter, {trigger: true});
 		}
 
 

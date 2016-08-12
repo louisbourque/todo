@@ -10,8 +10,7 @@ app.draggable_sibling;
 $(function () {
 	'use strict';
 
-	new app.AreaListView();
-	new app.ProjectListView();
+	new app.CategoryListView();
 	new app.ActionListView();
 	new app.ActionDetailsView();
 });

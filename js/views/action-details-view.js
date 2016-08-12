@@ -28,16 +28,14 @@ var app = app || {};
 
 		render: function () {
 
-			if (app.selectedAreaID && app.selectedProjectID && app.selectedActionID
-				&& (app.selectedProjectID === 'project-all' || app.projects.get(app.selectedProjectID).get('visible'))) {
+			if (app.selectedCategoryID && app.selectedActionID) {
 				this.selectedAction = app.actions.get(app.selectedActionID);
-					if(this.selectedAction.get('visible') && (app.selectedProjectID === 'project-all' || this.selectedAction.get('project') === app.selectedProjectID)){
+					if(this.selectedAction.get('visible') && (app.selectedCategoryID === 'category-all' || this.selectedAction.get('category') === app.selectedCategoryID)){
 					this.$el.show();
-					var project = app.projects.get(this.selectedAction.get('project'));
+					var category = app.categories.get(this.selectedAction.get('category'));
 					this.$detailsDiv.html(this.template({
 										action: this.selectedAction,
-										area: app.areas.get(project.get('area')).get('title'),
-										project:project.get('title')
+										category:category.get('title')
 					}));
 				} else {
 					this.$el.hide();

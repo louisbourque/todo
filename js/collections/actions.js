@@ -15,43 +15,19 @@ var app = app || {};
 					return this.where({selected: true});
 		},
 		completed: function () {
-			return this.where({completed: true,project: app.selectedProjectID});
+			return this.where({completed: true});
 		},
 		remaining: function () {
-			return this.where({completed: false,project: app.selectedProjectID});
+			return this.where({completed: false});
 		},
-		completedBySelectedArea: function () {
-			if(app.selectedAreaID == "area-all"){
-				return this.where({completed: true});
-			}
-			var arr = [];
-			var projectsInSelectedArea = app.projects.projectsByArea(app.selectedAreaID);
-			var actions = this;
-			_.each(projectsInSelectedArea,function(project){
-				arr = arr.concat( actions.where({completed: true,project: project.id}))
-			});
-			return arr;
+		completedByCategory: function (categoryID) {
+			return this.where({completed: true,category: categoryID});
 		},
-		remainingBySelectedArea: function () {
-			if(app.selectedAreaID == "area-all"){
-				return this.where({completed: false});
-			}
-			var arr = [];
-			var projectsInSelectedArea = app.projects.projectsByArea(app.selectedAreaID);
-			var actions = this;
-			_.each(projectsInSelectedArea,function(project){
-				arr = arr.concat( actions.where({completed: false,project: project.id}))
-			});
-			return arr;
+		remainingByCategory: function (categoryID) {
+			return this.where({completed: false,category: categoryID});
 		},
-		completedByProject: function (projectID) {
-			return this.where({completed: true,project: projectID});
-		},
-		remainingByProject: function (projectID) {
-			return this.where({completed: false,project: projectID});
-		},
-		actionsByProject: function (projectID) {
-			return this.where({project: projectID});
+		actionsByCategory: function (categoryID) {
+			return this.where({category: categoryID});
 		},
 	});
 

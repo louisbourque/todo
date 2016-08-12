@@ -20,19 +20,12 @@
 	</head>
 	<body>
 		<section class="todoapp">
-			<section class="areas">
+			<section class="categories">
 				<header class="header">
-					<h2>Areas</h2>
+					<h2>Categories</h2>
 				</header>
-				<ul class="item-list area-list"></ul>
-				<input class="new-item new-area" placeholder="Add Area" autofocus>
-			</section>
-			<section class="projects hidden">
-				<header class="header">
-					<h2>Projects</h2>
-				</header>
-				<ul class="item-list project-list"></ul>
-				<input class="new-item new-project" placeholder="Add Project">
+				<ul class="item-list category-list"></ul>
+				<input class="new-item new-category" placeholder="Add Category">
 			</section>
 			<section class="actions hidden">
 				<header class="header">
@@ -53,16 +46,15 @@
 		</section>
 		<footer class="info">
 
-			<section class="area-hint">Enter general areas, such as <b>Work</b>, <b>Personal</b>, or <b>Hobbies</b>.<br>Press Enter to save.</section>
-			<section class="project-hint hidden">Enter specific project to be completed, such as <b>Create Todo App</b>, or <b>Learn German</b>.<br>Press Enter to save.</section>
-			<section class="action-hint hidden">Enter specific actions required to complete the project, such as <b>Gather Requirements</b>, or <b>Practice Writing</b>.<br>Press Enter to save.</section>
+			<section class="category-hint hidden">Enter Category.<br>Press Enter to save.</section>
+			<section class="action-hint hidden">Enter Action.<br>Press Enter to save.</section>
 		</footer>
 		<div id="dialog-confirm" class="hidden">
   		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><span id="dialog-message"></span></p>
 		</div>
-		<script type="text/template" id="item-template">
+		<script type="text/template" id="category-template">
 			<div class="view">
-				<label class="title-label" data-id="<%- id %>"><%- title %> <span class="project-stats"><% print (typeof(completedCount) === "undefined" ? '' : completedCount+remainingCount == 0 ? '(no actions) ': ((completedCount/(completedCount+remainingCount))*100).toFixed(1) + '%&nbsp;done&nbsp;(' + completedCount + '/' + (completedCount+remainingCount) + ')') %><span></label>
+				<label class="title-label" data-id="<%- id %>"><%- title %> <span class="category-stats"><% print (typeof(completedCount) === "undefined" ? '' : completedCount+remainingCount == 0 ? '(no actions) ': ((completedCount/(completedCount+remainingCount))*100).toFixed(1) + '%&nbsp;done&nbsp;(' + completedCount + '/' + (completedCount+remainingCount) + ')') %><span></label>
 				<button class="destroy fa fa-trash"></button>
 			</div>
 			<input class="edit" value="<%- title %>">
@@ -80,8 +72,7 @@
 				<label for="action-completed">Completed</label>
 				<button class="destroy fa fa-trash"></button>
 
-				<p id="action-area">Area: <b><%= area %></b></p>
-				<p id="action-project">Project:<b><%= project %></b></p>
+				<p id="action-category">Category:<b><%= category %></b></p>
 				<input id="action-title" class="edit" value="<%- action.get('title') %>">
 				<label for="action-note">Notes:</label><br>
 				<textarea id="action-note" class="edit"><%- action.get('note') %></textarea>
@@ -108,18 +99,14 @@
 		<script src="node_modules/underscore/underscore.js"></script>
 		<script src="node_modules/backbone/backbone.js"></script>
 		<script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
-		<script src="js/models/area.js"></script>
-		<script src="js/models/project.js"></script>
+		<script src="js/models/category.js"></script>
 		<script src="js/models/action.js"></script>
-		<script src="js/collections/areas.js"></script>
-		<script src="js/collections/projects.js"></script>
+		<script src="js/collections/categories.js"></script>
 		<script src="js/collections/actions.js"></script>
-		<script src="js/views/arealist-view.js"></script>
-		<script src="js/views/projectlist-view.js"></script>
+		<script src="js/views/categorylist-view.js"></script>
 		<script src="js/views/actionlist-view.js"></script>
 		<script src="js/views/action-details-view.js"></script>
-		<script src="js/views/area-view.js"></script>
-		<script src="js/views/project-view.js"></script>
+		<script src="js/views/category-view.js"></script>
 		<script src="js/views/action-view.js"></script>
 		<script src="js/routers/router.js"></script>
 		<script src="js/app.js"></script>

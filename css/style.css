@@ -103,16 +103,7 @@ input[type="checkbox"] {
 	width:100%;
 }
 
-.areas {
-	float: left;
-	position: relative;
-	z-index: 2;
-	border-top: 1px solid #e6e6e6;
-	padding-bottom: 500em;
-  margin-bottom: -500em;
-	width: 280px;
-}
-.projects {
+.categories {
 	float: left;
 	position: relative;
 	z-index: 3;
@@ -120,7 +111,7 @@ input[type="checkbox"] {
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
-	width: 280px;
+	width: 340px;
 }
 .actions {
 	float: left;
@@ -130,7 +121,7 @@ input[type="checkbox"] {
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
-	width: 280px;
+	width: 380px;
 }
 
 .action-details {
@@ -141,7 +132,7 @@ input[type="checkbox"] {
 	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
-	width: 400px;
+	width: 500px;
 }
 
 .item-list {
@@ -204,7 +195,7 @@ input[type="checkbox"] {
 	text-decoration: line-through;
 }
 
-.project-stats{
+.category-stats{
 	font-size:80%;
 	color: #909090;
 }
@@ -227,8 +218,7 @@ input[type="checkbox"] {
 .item-list li.selected .destroy{
 	display: block;
 }
-.item-list li.project-all .destroy,
-.item-list li.area-all .destroy{
+.item-list li.category-all .destroy{
 	display: none;
 }
 .action-details .destroy{
@@ -373,8 +363,8 @@ label[for="toggle-all"]{
 	vertical-align: center;
 }
 
-.droppable-project.active,.droppable-area.active  { background: #CFC; }
-.droppable-project.hovered,.droppable-area.hovered { background: #CCF; }
+.droppable-category.active { background: #CFC; }
+.droppable-category.hovered { background: #CCF; }
 
 /*
 	Hack to remove background from Mobile Safari.
@@ -391,18 +381,24 @@ label[for="toggle-all"]{
 	}
 }
 
-@media all and (max-width: 1260px) and (min-width: 1165px) {
-	.action-details {
-		width: 300px;
+@media all and (max-width: 1260px) and (min-width: 1030px) {
+	.categories {
+		width: 280px;
+	}
+	.actions {
+		width: 320px;
 	}
 }
 
 @media all and (max-width: 1164px) and (min-width: 450px) {
-	.areas {
+	.action-details {
 		width: 400px;
 	}
-	.projects {
+}
+@media all and (max-width: 1029px) {
+	.categories {
 		width: 400px;
+			clear: left;
 	}
 	.actions {
 		clear: left;
@@ -411,29 +407,15 @@ label[for="toggle-all"]{
 	}
 	.action-details {
 		width: 400px;
+			clear: left;
 	}
 }
-
-@media all and (max-width: 819px) {
-	.projects {
-		clear: left;
-	}
-	.action-details {
-		clear: left;
-	}
-}
-
 @media all and (max-width: 449px) {
-	.areas {
-		width: 280px;
-	}
-	.projects {
+	.categories {
 		width: 280px;
 	}
 	.actions {
-		clear: left;
 		width: 280px;
-		border-left:none;
 	}
 	.action-details {
 		width: 280px;

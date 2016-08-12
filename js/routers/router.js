@@ -7,17 +7,15 @@ var app = app || {};
 	app.ActionStatusFilter = 'all';
 	var AreaRouter = Backbone.Router.extend({
 		routes: {
-			':area(/p:project)(/a:action)(/f:filter)': 'setFilter'
+			':category(/a:action)(/f:filter)': 'setFilter'
 		},
 
-		setFilter: function (area,project,action,filter) {
-			app.selectedAreaID = area || '';
-			app.selectedProjectID = project || '';
+		setFilter: function (category,action,filter) {
+			app.selectedCategoryID = category || '';
 			app.selectedActionID = action || '';
 			app.ActionStatusFilter = filter || 'all';
 
-			app.areas.trigger('filter');
-			app.projects.trigger('filter');
+			app.categories.trigger('filter');
 			app.actions.trigger('filter');
 		}
 	});

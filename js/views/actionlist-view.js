@@ -68,7 +68,7 @@ var app = app || {};
 			var completed = app.actions.completed().length;
 			var remaining = app.actions.remaining().length;
 
-			if (app.selectedAreaID && app.selectedProjectID && (app.selectedProjectID == 'project-all' || app.projects.get(app.selectedProjectID).get('visible'))) {
+			if (app.selectedCategoryID && (app.selectedCategoryID == 'category-all' || app.categories.get(app.selectedCategoryID).get('visible'))) {
 				this.$el.show();
 
 				this.$statusfilter.html(this.statusTemplate({
@@ -128,13 +128,13 @@ var app = app || {};
 		},
 
 		setFilterAll: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.selectedAreaID)+'/p'+app.selectedProjectID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/fall', {trigger: true});
+			app.AreaRouter.navigate(app.selectedCategoryID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/fall', {trigger: true});
 		},
 		setFilterActive: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.selectedAreaID)+'/p'+app.selectedProjectID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/factive', {trigger: true});
+			app.AreaRouter.navigate(app.selectedCategoryID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/factive', {trigger: true});
 		},
 		setFilterCompleted: function() {
-			app.AreaRouter.navigate(encodeURIComponent(app.selectedAreaID)+'/p'+app.selectedProjectID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/fcompleted', {trigger: true});
+			app.AreaRouter.navigate(app.selectedCategoryID+(app.selectedActionID ? '/a'+app.selectedActionID : '' )+'/fcompleted', {trigger: true});
 		},
 
 		addOne: function (action) {
@@ -153,7 +153,7 @@ var app = app || {};
 			return {
 				title: this.$input.val().trim(),
 				order: app.actions.nextOrder(),
-				project: app.selectedProjectID,
+				category: app.selectedCategoryID,
 			};
 		},
 
@@ -175,10 +175,10 @@ var app = app || {};
 							}
 						}
 					});
-				}else if(app.selectedProjectID === "" || app.selectedProjectID === "project-all"){
-					$('#dialog-confirm #dialog-message').html('Please select the project where this activity should be created.');
+				}else if(app.selectedCategoryID === "" || app.selectedCategoryID === "category-all"){
+					$('#dialog-confirm #dialog-message').html('Please select the category where this activity should be created.');
 					$( "#dialog-confirm" ).dialog({
-						title:"Project must be selected",
+						title:"Category must be selected",
 						resizable: false,
 						height: "auto",
 						width: 400,
@@ -209,7 +209,11 @@ var app = app || {};
 					modal: true,
 					buttons: {
 						"Clear Completed": function() {
-							_.invoke(app.actions.completedByProject(app.selectedProjectID), 'destroy');
+							if(app.selectedCategoryID === 'category-all'){
+								_.invoke(app.actions.completed(), 'destroy');
+							}else{
+								_.invoke(app.actions.completedByCategory(app.selectedCategoryID), 'destroy');
+							}
 							app.actions.trigger('toggleCompleted');
 							$( this ).dialog( "close" );
 						},
@@ -226,7 +230,7 @@ var app = app || {};
 			var completed = this.allCheckbox.checked;
 
 			app.actions.each(function (action) {
-				if(action.get('project') === app.selectedProjectID){
+				if(action.get('category') === app.selectedCategoryID){
 					action.save({
 						completed: completed
 					});
