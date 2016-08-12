@@ -110,7 +110,10 @@ var app = app || {};
 					buttons: {
 						"Delete Category": function() {
 							_.invoke(actionsInCategory, 'destroy');
+							app.selectedCategoryID = "";
 							model.destroy();
+							//force actionlist view to re-render
+							app.actions.trigger('filter');
 							$( this ).dialog( "close" );
 						},
 						Cancel: function() {

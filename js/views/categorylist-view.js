@@ -26,6 +26,7 @@ var app = app || {};
 			this.listenTo(app.categories, 'add', this.addOne);
 			this.listenTo(app.categories, 'reset', this.addAll);
 			this.listenTo(app.categories, 'filter', this.render);
+			this.listenTo(app.categories, 'destroy', this.render);
 			this.listenTo(app.categories, 'updateOrder', this.updateOrder);
 			this.listenTo(app.actions, 'reset', this.updateCompleteCountsAllCategory);//set stats on All Category item
 			this.listenTo(app.actions, 'update', _.debounce(this.updateCompleteCountsAll,0));
@@ -58,6 +59,7 @@ var app = app || {};
 			this.filterAll();
 			this.selectCategory();
 			this.updateCompleteCountsAllCategory();
+			this.resetDroppable();
 		},
 
 		resetDroppable: function(){
@@ -95,6 +97,13 @@ var app = app || {};
 			app.categories.each(function(category){
 				category.select(false);
 			});
+
+			if(!(app.selectedCategoryID && app.categories.get(app.selectedCategoryID))  && app.categories.length === 1){
+				//no selected category, but 1only one category, automatically select it
+				app.selectedCategoryID = app.categories.models[0].id;
+				//force actionlist view to re-render
+				app.actions.trigger('filter');
+			}
 			if(app.selectedCategoryID){
 				if(app.selectedCategoryID === this.allCategory.id){
 					this.allCategory.set("selected",true);
@@ -109,7 +118,6 @@ var app = app || {};
 					}
 				}
 			}
-			this.resetDroppable();
 		},
 
 		updateCompleteCountsAll: function(){
@@ -160,9 +168,8 @@ var app = app || {};
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
 					app.categories.create(this.newAttributes(),{wait: true});
-					this.filterAll();
-					this.resetDroppable();
 					this.$input.val('');
+					this.render();
 				}
 		},
 
