@@ -58,6 +58,7 @@ var app = app || {};
 
 
 		edit: function () {
+			if(this.$el.hasClass('category-all')) return;
 			this.$el.addClass('editing');
 			this.$input.focus();
 		},
