@@ -68,7 +68,7 @@ var app = app || {};
 			var completed = app.actions.completed().length;
 			var remaining = app.actions.remaining().length;
 
-			if (app.selectedCategoryID && (app.selectedCategoryID == 'category-all' || app.categories.get(app.selectedCategoryID).get('visible'))) {
+			if (app.selectedCategoryID || app.selectedCategoryID == 'category-all') {
 				this.$el.show();
 
 				this.$statusfilter.html(this.statusTemplate({
