@@ -366,6 +366,14 @@ label[for="toggle-all"]{
 .droppable-category.active { background: #CFC; }
 .droppable-category.hovered { background: #CCF; }
 
+#help-button{
+	position:absolute;
+	top:5px;
+	right:5px;
+	font-size: 3em;
+	z-index: 500;
+}
+
 /*
 	Hack to remove background from Mobile Safari.
 	Can't use it globally since it destroys checkboxes in Firefox

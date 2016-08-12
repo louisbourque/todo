@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name=viewport content="width=device-width, initial-scale=1">
-		<title>ToDo - Timetracker</title>
+		<title>ToDo</title>
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="node_modules/jquery-ui/themes/base/all.css">
@@ -19,6 +19,7 @@
 		</script>
 	</head>
 	<body>
+		<button id="help-button"><i class="fa fa-question-circle" aria-hidden="true"></i></button>
 		<section class="todoapp">
 			<section class="categories">
 				<header class="header">
@@ -51,6 +52,19 @@
 		</footer>
 		<div id="dialog-confirm" class="hidden">
   		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><span id="dialog-message"></span></p>
+		</div>
+		<div id="dialog-help" class="hidden">
+			<p>This app is a work in progress.</p>
+			<p>Add categories, then add some actions under that category.</p>
+			<ul>
+				<li>All data is stored in localStorage.</li>
+				<li>Double click a category to rename it.</li>
+				<li>Drag and Drop actions to re-order or change category.</li>
+			</ul>
+			<p>Coming soon:</p>
+			<ul>
+				<li>Import/Export data.</li>
+			</ul>
 		</div>
 		<script type="text/template" id="category-template">
 			<div class="view">

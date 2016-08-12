@@ -14,3 +14,22 @@ $(function () {
 	new app.ActionListView();
 	new app.ActionDetailsView();
 });
+
+
+
+$(document).ready(function(){
+	$( "#help-button").click(function(){
+		$( "#dialog-help" ).dialog({
+			title:"Todo - Help",
+			resizable: true,
+			height: "auto",
+			width: "auto",
+			modal: false,
+			buttons: {
+				OK: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+});
