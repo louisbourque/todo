@@ -366,12 +366,44 @@ label[for="toggle-all"]{
 .droppable-category.active { background: #CFC; }
 .droppable-category.hovered { background: #CCF; }
 
-#help-button{
+#menu-button{
 	position:absolute;
-	top:5px;
+	top:15px;
 	right:5px;
 	font-size: 3em;
 	z-index: 500;
+}
+
+#menu{
+	position:fixed;
+	top:0px;
+	right:0px;
+	font-size: 3em;
+	z-index: 500;
+	padding:15px 5px 10px 20px;
+	width:42px;
+	overflow: hidden;
+}
+#menu button{
+	display: table;
+}
+.menu-button-hide{
+	opacity: 0;
+  transition: opacity .5s ease-out;
+}
+.menu-button-show{
+	opacity: 1;
+  transition: opacity .5s ease-out;
+}
+.menu-hide{
+	transform: translateX(100%);
+	opacity: 0;
+  transition: opacity .5s ease-out, transform 300ms linear;
+}
+.menu-show{
+	transform: translateX(0%);
+	opacity: 1;
+	transition: transform 0ms linear, opacity .5s ease-out;
 }
 
 /*
