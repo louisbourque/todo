@@ -47,4 +47,32 @@ $(document).ready(function(){
 		var file = new File([ls], "todo.json", {type: "text/plain;charset=utf-8"});
 		saveAs(file);
 	});
+	$( "#clear-button").click(function(){
+		$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete category and action data?');
+		$( "#dialog-confirm" ).dialog({
+			title:"Delete All Data",
+			resizable: false,
+			height: "auto",
+			width: 400,
+			modal: true,
+			buttons: {
+				"Delete Everything": function() {
+					localStorage.clear();
+					app.selectedCategoryID = "";
+					app.categories.reset();
+					app.actions.reset();
+					//force a re-render
+					app.actions.trigger('filter');
+					$( this ).dialog( "close" );
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+
+
+
+
 });
