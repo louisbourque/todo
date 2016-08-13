@@ -42,4 +42,9 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$( "#download-button").click(function(){
+		var ls = JSON.stringify(localStorage);
+		var file = new File([ls], "todo.json", {type: "text/plain;charset=utf-8"});
+		saveAs(file);
+	});
 });
