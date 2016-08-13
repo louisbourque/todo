@@ -405,7 +405,9 @@ label[for="toggle-all"]{
 	opacity: 1;
 	transition: transform 0ms linear, opacity .5s ease-out;
 }
-
+#import-status{
+	color:red;
+}
 /*
 	Hack to remove background from Mobile Safari.
 	Can't use it globally since it destroys checkboxes in Firefox

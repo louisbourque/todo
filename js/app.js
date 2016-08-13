@@ -47,8 +47,48 @@ $(document).ready(function(){
 		var file = new File([ls], "todo.json", {type: "text/plain;charset=utf-8"});
 		saveAs(file);
 	});
+	$( "#upload-button").click(function(){
+		$('#dialog-confirm #dialog-message').html('Importing data will <strong>permanently</strong> delete exising data. Continue?<br><div id="import-status"></div><input type="file" id="import-file">');
+		$( "#dialog-confirm" ).dialog({
+			title:"Import Data",
+			resizable: false,
+			height: "auto",
+			width: 400,
+			modal: true,
+			buttons: {
+				"Overwrite and Import": function() {
+
+					var selectedFile = document.getElementById('import-file').files[0];
+					if(selectedFile){
+						var reader = new FileReader();
+						var dialog = $( this )
+						reader.onload = function(e){
+							var obj = JSON.parse(e.target.result);
+							localStorage.clear();
+							for (var key in obj) {
+								localStorage.setItem(key,obj[key]);
+							}
+
+							app.selectedCategoryID = "";
+							app.categories.fetch();
+							app.actions.fetch();
+							//force a re-render
+							app.actions.trigger('filter');
+							dialog.dialog( "close" );
+						}
+						reader.readAsText(selectedFile);
+					}else{
+						document.getElementById('import-status').innerHTML = "No file selected, please select a file.";
+					}
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
 	$( "#clear-button").click(function(){
-		$('#dialog-confirm #dialog-message').html('Are you sure you want to permanently delete category and action data?');
+		$('#dialog-confirm #dialog-message').html('Are you sure you want to <strong>permanently</strong> delete category and action data?');
 		$( "#dialog-confirm" ).dialog({
 			title:"Delete All Data",
 			resizable: false,
