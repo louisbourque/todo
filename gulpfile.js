@@ -5,11 +5,10 @@ const concatcss = require('gulp-concat-css');
 const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const minifyhtml = require('gulp-minify-html');
-const useref = require('gulp-useref');
 const eslint = require('gulp-eslint');
-const gulpif = require('gulp-if');
+const htmlreplace = require('gulp-html-replace');
 
-gulp.task('default', ['js','css']);
+gulp.task('default', ['js','css','html']);
 
 // CSS minification task
 gulp.task('css', function() {
@@ -47,10 +46,11 @@ gulp.task('img', function () {
 // minify HTML task
 gulp.task('html', function () {
   return gulp.src('src/*.html')
-      .pipe(useref())
-      .pipe(gulpif('*.js', uglify()))
-      .pipe(gulpif('*.css', minifycss()))
-      .pipe(minifyhtml())
+    .pipe(htmlreplace({
+        'css': 'css/style.min.css',
+        'js': 'js/bundle.min.js'
+    }))
+    .pipe(minifyhtml())
     .pipe(gulp.dest(''));
 });
 
