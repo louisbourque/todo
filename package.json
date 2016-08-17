@@ -10,7 +10,7 @@
   "author": "Louis Bourque",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/louisbourque/todo-timetracker.git"
+    "url": "git+https://github.com/louisbourque/todo.git"
   },
   "license": "ISC",
   "dependencies": {
