@@ -2,6 +2,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	height:100%
 }
 
 button {
@@ -27,6 +28,7 @@ body {
 	min-width: 230px;
 	margin: 0 auto;
 	float:left;
+	width: 100%;
 }
 
 button,
@@ -108,7 +110,6 @@ input[type="checkbox"] {
 	position: relative;
 	z-index: 3;
 	border-top: 1px solid #e6e6e6;
-	border-left: 2px solid #999;
 	padding-bottom: 500em;
   margin-bottom: -500em;
 	width: 340px;
@@ -450,6 +451,7 @@ label[for="toggle-all"]{
 	.action-details {
 		width: 400px;
 			clear: left;
+			border-left: none;
 	}
 }
 @media all and (max-width: 449px) {

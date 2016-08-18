@@ -15,19 +15,23 @@ $(function () {
 	new app.ActionDetailsView();
 });
 
+function showButtonMenu(event){
+	$( "#menu").removeClass('hidden').addClass('menu-show').removeClass('menu-hide');
+	$( "#menu-button").removeClass('menu-button-show').addClass('menu-button-hide');
+	event.stopPropagation();
+	event.preventDefault();
+	$('body').click(hideButtonMenu);
+}
 
+function hideButtonMenu(){
+	$( "#menu").addClass('menu-hide').removeClass('menu-show');
+	$( "#menu-button").removeClass('menu-button-hide').addClass('menu-button-show');
+	$('body').off( "click" );
+}
 
 $(document).ready(function(){
-	$( "#menu-button").click(function(){
-		$( "#menu").removeClass('hidden').addClass('menu-show').removeClass('menu-hide');
-		//$( "#menu").removeClass('hidden');
-		$( "#menu-button").removeClass('menu-button-show').addClass('menu-button-hide');
-	});
-	$( "#menu").mouseleave(function(){
-			$( "#menu").addClass('menu-hide').removeClass('menu-show');
-
-			$( "#menu-button").removeClass('menu-button-hide').addClass('menu-button-show');
-    });
+	$( "#menu-button").click(showButtonMenu);
+	$( "#menu").mouseleave(hideButtonMenu);
 	$( "#help-button").click(function(){
 		$( "#dialog-help" ).dialog({
 			title:"Todo - Help",
