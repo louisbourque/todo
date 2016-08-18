@@ -15,8 +15,9 @@ gulp.task('css', function() {
   return gulp.src(['src/css/*.css',
                   'node_modules/font-awesome/css/font-awesome.min.css',
                 'node_modules/jquery-ui/themes/base/all.css'])
-    .pipe(minifycss())
+    .pipe(minifycss())//need to minify twice, concat fails due to commented out code.
     .pipe(concatcss('style.min.css'))
+    .pipe(minifycss())
     .pipe(gulp.dest('css'));
 });
 // JS minification task
