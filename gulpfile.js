@@ -13,7 +13,6 @@ gulp.task('default', ['js','css','html']);
 // CSS minification task
 gulp.task('css', function() {
   return gulp.src(['src/css/*.css',
-                  'node_modules/font-awesome/css/font-awesome.min.css',
                 'node_modules/jquery-ui/themes/base/all.css'])
     .pipe(minifycss())//need to minify twice, concat fails due to commented out code.
     .pipe(concatcss('style.min.css'))
@@ -49,6 +48,7 @@ gulp.task('html', function () {
   return gulp.src('src/*.html')
     .pipe(htmlreplace({
         'css': 'css/style.min.css',
+        'css-fa': 'node_modules/font-awesome/css/font-awesome.min.css',
         'js': 'js/bundle.min.js'
     }))
     .pipe(minifyhtml())
