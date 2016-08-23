@@ -272,6 +272,7 @@ label[for="action-note"]{
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	text-align: center;
 	clear: both;
+	display: table;
 }
 
 .info p {
@@ -286,6 +287,14 @@ label[for="action-note"]{
 
 .info a:hover {
 	text-decoration: underline;
+}
+
+.category-hint,.action-hint{
+	float: left;
+	left: 40%;
+	width: 20%;
+	position: absolute;
+	clear: both;
 }
 
 .status-filter {

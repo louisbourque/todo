@@ -6,8 +6,9 @@
 		<title>ToDo</title>
 
 			<!-- build:css -->
+			<link rel="stylesheet" href="css/normalize.css">
+			<link rel="stylesheet" href="css/h5bp.css">
 			<link rel="stylesheet" href="css/style.css">
-			<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
 			<link rel="stylesheet" href="../node_modules/jquery-ui/themes/base/all.css">
 			<!-- endbuild -->
 			<!-- build:css-fa -->
@@ -59,8 +60,11 @@
 		</section>
 		<footer class="info">
 
-			<section class="category-hint hidden">Enter Category.<br>Press Enter to save.</section>
-			<section class="action-hint hidden">Enter Action.<br>Press Enter to save.</section>
+			<section class="category-hint invisible">Enter Category.<br>Press Enter to save.</section>
+			<section class="action-hint invisible">Enter Action.<br>Press Enter to save.</section>
+		</footer>
+		<footer>
+			Built by <a href="http://louisbourque.ca/">Louis Bourque</a>.
 		</footer>
 		<div id="dialog-confirm" class="hidden">
   		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><span id="dialog-message"></span></p>

@@ -32,9 +32,9 @@ var app = app || {};
 			this.listenTo(app.actions, 'updateOrder', this.updateOrder);
 
 			$('.new-action').focus(function(){
-				$('.action-hint').removeClass('hidden');
+				$('.action-hint').removeClass('invisible');
 			}).blur(function(){
-				$('.action-hint').addClass('hidden');
+				$('.action-hint').addClass('invisible');
 			});
 
 			$( ".action-list" ).sortable({

@@ -33,9 +33,9 @@ var app = app || {};
 			this.listenTo(app.actions, 'change:completed', _.debounce(this.updateCompleteCountsAll,0));
 
 			$('.new-category').focus(function(){
-				$('.category-hint').removeClass('hidden');
+				$('.category-hint').removeClass('invisible');
 			}).blur(function(){
-				$('.category-hint').addClass('hidden');
+				$('.category-hint').addClass('invisible');
 			});
 
 			$( ".category-list" ).sortable({
