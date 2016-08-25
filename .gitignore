@@ -55,10 +55,3 @@ node_modules/backbone/*
 !node_modules/backbone/backbone.js
 node_modules/backbone.localstorage/*
 !node_modules/backbone.localstorage/backbone.localStorage.js
-node_modules/font-awesome/*
-!node_modules/font-awesome/fonts
-node_modules/font-awesome/fonts/*
-!node_modules/font-awesome/fonts/fontawesome-webfont.woff2
-!node_modules/font-awesome/css
-node_modules/font-awesome/css/*
-!node_modules/font-awesome/css/font-awesome.min.css
