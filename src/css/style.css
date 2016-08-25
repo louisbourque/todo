@@ -383,6 +383,12 @@ label[for="toggle-all"]{
 	font-size: 3em;
 	z-index: 500;
 }
+button > svg{
+	width: 36px;
+	height: 36px;
+	margin-top:8px;
+	fill:   #555;
+}
 
 #menu{
 	position:fixed;

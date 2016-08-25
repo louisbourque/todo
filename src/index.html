@@ -11,9 +11,6 @@
 			<link rel="stylesheet" href="css/style.css">
 			<link rel="stylesheet" href="../node_modules/jquery-ui/themes/base/all.css">
 			<!-- endbuild -->
-			<!-- build:css-fa -->
-			<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
-			<!-- endbuild -->
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -26,12 +23,12 @@
 		</script>
 	</head>
 	<body>
-		<button id="menu-button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+		<button id="menu-button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16"><path d="M0 3h14v3H0V3zm0 4h14v3H0V7zm0 4h14v3H0v-3zm15.5-2l3 3 3-3zm6-1l-3-3-3 3z"/></svg></button>
 		<div id="menu" class="menu-hide menu">
-			<button id="help-button"><i class="fa fa-question-circle" aria-hidden="true"></i></button>
-			<button id="download-button"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i></button>
-			<button id="upload-button"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></button>
-			<button id="clear-button"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+			<button id="help-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="8"/><path d="M8.451 4.472q0 .478-.305.756-.305.279-.73.279-.424 0-.73-.279-.292-.278-.292-.756 0-.491.292-.77.306-.278.73-.278.425 0 .73.278.305.279.305.77zm2.429 7.763q-.505.238-.956.318-.438.093-.81.093-.636 0-1.074-.186-.425-.186-.69-.53-.252-.359-.358-.863-.107-.504-.107-1.155V7.617H5.16V6.263h3.358v3.862q0 .557.199.836.212.265.69.265.225 0 .544-.053.318-.066.716-.252l.213 1.314z" font-weight="700" font-size="13.27" font-family="Ubuntu Mono" letter-spacing="0" word-spacing="0" text-anchor="middle" fill="#fff"/></svg></button>
+			<button id="download-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 9l4-4H9V1H7v4H4zm3.636-1.636l-1.121 1.121L14.579 10 8 12.453 1.421 10l4.064-1.515-1.121-1.121L0 9v4l8 3 8-3V9z"/></svg></button>
+			<button id="upload-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M7 9h2V5h3L8 1 4 5h3zm3-2.25v1.542L14.579 10 8 12.453 1.421 10 6 8.292V6.75L0 9v4l8 3 8-3V9z"/></svg></button>
+			<button id="clear-button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M14.332 14.126l-4.08-3.626 4.08-3.626a.5.5 0 0 0-.664-.748L9.5 9.831 5.332 6.126a.5.5 0 1 0-.664.748l4.08 3.626-4.08 3.626a.5.5 0 0 0 .664.748L9.5 11.169l4.168 3.705a.5.5 0 0 0 .664-.748z"/><path d="M9.5 20c-2.538 0-4.923-.988-6.718-2.782S0 13.038 0 10.501c0-2.538.988-4.923 2.782-6.718S6.962 1 9.5 1c2.538 0 4.923.988 6.718 2.783S19 7.963 19 10.501s-.988 4.923-2.782 6.717A9.438 9.438 0 0 1 9.5 20zm0-18C4.813 2 1 5.813 1 10.5S4.813 19 9.5 19s8.5-3.813 8.5-8.5S14.187 2 9.5 2z"/></svg></button>
 		</div>
 		<section class="todoapp">
 			<section class="categories">
@@ -66,10 +63,10 @@
 		<footer>
 			Built by <a href="http://louisbourque.ca/">Louis Bourque</a>.
 		</footer>
-		<div id="dialog-confirm" class="hidden">
+		<div id="dialog-confirm" style="display:none;">
   		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span><span id="dialog-message"></span></p>
 		</div>
-		<div id="dialog-help" class="hidden">
+		<div id="dialog-help" style="display:none;">
 			<p>This app is a work in progress.</p>
 			<p>Add categories, then add some actions under that category.</p>
 			<ul>

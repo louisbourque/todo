@@ -48,7 +48,6 @@ gulp.task('html', function () {
   return gulp.src('src/*.html')
     .pipe(htmlreplace({
         'css': 'css/style.min.css',
-        'css-fa': 'node_modules/font-awesome/css/font-awesome.min.css',
         'js': 'js/bundle.min.js'
     }))
     .pipe(minifyhtml())
