@@ -169,19 +169,19 @@ input[type="checkbox"] {
 
 .item-list li .toggle {
 	text-align: center;
-	width: 40px;
 	/* auto, since non-WebKit browsers doesn't support input styling */
 	height: auto;
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	margin: auto 0;
+	margin: auto 0 auto 12px;
+	padding-left: 20px;
 	border: none; /* Mobile Safari */
 }
 
 .item-list li label {
 	white-space: pre-line;
-	padding: 10px 25px 5px 5px;
+	padding: 8px 25px 5px 5px;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
@@ -291,8 +291,8 @@ label[for="action-note"]{
 
 .category-hint,.action-hint{
 	float: left;
-	left: 40%;
-	width: 20%;
+	left: 30%;
+	width: 40%;
 	position: absolute;
 	clear: both;
 }
@@ -365,12 +365,19 @@ label[for="action-note"]{
 visibility: hidden;
 }
 
+.toggle-all{
+	margin-left: 3px;
+}
+
 label[for="toggle-all"]{
 	padding-bottom: 5px;
 }
 
 #dialog-confirm #dialog-message{
 	vertical-align: center;
+}
+.ui-dialog{
+	max-width: 100%;
 }
 
 .droppable-category.active { background: #CFC; }
