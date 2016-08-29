@@ -7,8 +7,9 @@ const imagemin = require('gulp-imagemin');
 const minifyhtml = require('gulp-minify-html');
 const eslint = require('gulp-eslint');
 const htmlreplace = require('gulp-html-replace');
+const inline = require('gulp-inline');
 
-gulp.task('default', ['js','css','html']);
+gulp.task('default', ['js','html']);
 
 // CSS minification task
 gulp.task('css', function() {
@@ -46,8 +47,12 @@ gulp.task('img', function () {
 // minify HTML task
 gulp.task('html', function () {
   return gulp.src('src/*.html')
+    .pipe(inline({
+      base: 'src/',
+      css: minifycss,
+      disabledTypes: ['svg', 'img', 'js'] // Only inline css files
+    }))
     .pipe(htmlreplace({
-        'css': 'css/style.min.css',
         'js': 'js/bundle.min.js'
     }))
     .pipe(minifyhtml())
